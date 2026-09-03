@@ -57,6 +57,24 @@ The system now provides:
 
 ## Canonical Source
 
+Private GitHub repository:
+
+```text
+https://github.com/browsersender/orchestrated-roadmap-builder
+```
+
+Clone command:
+
+```powershell
+git clone https://github.com/browsersender/orchestrated-roadmap-builder.git
+```
+
+Initial verified GitHub commit:
+
+```text
+a8bb10d  feat: publish portable roadmap orchestrator
+```
+
 Repository/worktree:
 
 ```text
