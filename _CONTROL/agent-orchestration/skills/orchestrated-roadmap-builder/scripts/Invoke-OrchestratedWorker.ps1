@@ -200,7 +200,7 @@ if ($providerExitCode -ne 0) { throw "provider_failed:${Provider}:exit_${provide
 
 if ($Provider -eq 'claude') {
     $transcriptPath = Join-Path $outputDirectory $transcriptName
-    $claudeEnvelope = Get-Content -Raw -LiteralPath $transcriptPath | ConvertFrom-Json
+    $claudeEnvelope = Get-Content -Raw -Encoding UTF8 -LiteralPath $transcriptPath | ConvertFrom-Json
     $structuredResult = $claudeEnvelope.structured_output
     if ($null -eq $structuredResult -and $claudeEnvelope.result) {
         try { $structuredResult = $claudeEnvelope.result | ConvertFrom-Json } catch { }
