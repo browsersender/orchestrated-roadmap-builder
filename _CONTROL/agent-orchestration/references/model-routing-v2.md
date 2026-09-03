@@ -21,6 +21,9 @@ const result = routeModelTask({
       'gpt-5.6-terra': { available: true, authorized: true },
       'gpt-5.6-luna': { available: true, authorized: true },
       'claude-opus-4-8': { available: false, authorized: false },
+      'claude-opus-5': { available: false, authorized: false },
+      'claude-sonnet-5': { available: false, authorized: false },
+      'claude-haiku-4-5-20251001': { available: false, authorized: false },
       'gpt-5.6-sol': { available: true, authorized: true }
     }
   },
@@ -46,7 +49,11 @@ Scores combine lane fit, mean review score from retained observations, and optio
 
 A coordinator may provide `{ lane, rationale }`. The requested lane still must be available, authorized, and evidence-supported. A successful override sets `coordinatorOverride.applied` and makes `automaticDispatch` false.
 
-`decideReroute` preserves one recoverable correction when `correctionRounds < correctionBudget`. At exhaustion, Luna escalates to Terra; Terra, fanout, and the Claude specialist escalate to Sol; Sol escalates to human authority. Escalation is a routing boundary, not an acceptance decision.
+`decideReroute` preserves one recoverable correction when `correctionRounds < correctionBudget`. At exhaustion, Luna escalates to Terra and Haiku 4.5 escalates to Sonnet 5; Terra, fanout, Sonnet 5, and both Claude specialist lanes escalate to Sol; Sol escalates to human authority. Escalation is a routing boundary, not an acceptance decision.
+
+## Lane Tiers
+
+Claude lanes share the task-fit formula of their Codex tier (`primary`, `bounded`, `specialist`) so that ranking between providers is decided by measured review scores and telemetry, not by a fit bias written into the router. A lane whose model has no retained observation for the task shape is excluded with `capability_evidence_missing` and cannot be selected by override.
 
 ## Receipt
 

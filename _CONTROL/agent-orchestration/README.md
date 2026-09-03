@@ -8,6 +8,7 @@ This control layer routes bounded work among Sol, Terra, Luna, and selected exte
 - **Terra** is the default technical builder for substantial, cross-file, or behavior-changing lanes.
 - **Luna** handles narrow source-grounded implementation, extraction, transformation, fixtures, and independent fan-out work.
 - **Claude Opus 4.8** is an independently reviewed specialist for high-value architecture challenge, source synthesis, and bounded ambiguity-heavy work; it is not the routine production default.
+- **Claude Opus 5, Sonnet 5, and Haiku 4.5** are policy-visible lanes at the specialist, primary, and bounded tiers respectively. They have no capability observations yet and cannot win a route until a matched benchmark records them.
 - **Human and product owners** retain decisions, promotion, live-account action, protected intake, and external acceptance.
 
 Routing is a reversible recommendation. It is not acceptance authority and it does not establish that a model is globally better. The capability ledger records performance by task shape.

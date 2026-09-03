@@ -7,7 +7,7 @@
     "schemaVersion": { "const": 1 },
     "observationId": { "type": "string", "minLength": 1 },
     "taskId": { "type": "string", "minLength": 1 },
-    "model": { "enum": ["gpt-5.6-terra", "gpt-5.6-luna", "claude-opus-4-8"] },
+    "model": { "enum": ["gpt-5.6-terra", "gpt-5.6-luna", "claude-opus-4-8", "claude-opus-5", "claude-sonnet-5", "claude-haiku-4-5-20251001"] },
     "taskShape": { "type": "array", "minItems": 1, "items": { "type": "string" } },
     "observed": {
       "type": "object",

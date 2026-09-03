@@ -7,7 +7,7 @@
     "schemaVersion": { "const": 1 },
     "taskId": { "type": "string", "minLength": 1 },
     "status": { "enum": ["complete", "blocked", "failed"] },
-    "model": { "enum": ["gpt-5.6-sol", "gpt-5.6-terra", "gpt-5.6-luna", "claude-opus-4-8"] },
+    "model": { "enum": ["gpt-5.6-sol", "gpt-5.6-terra", "gpt-5.6-luna", "claude-opus-4-8", "claude-opus-5", "claude-sonnet-5", "claude-haiku-4-5-20251001"] },
     "changedPaths": { "type": "array", "items": { "type": "string" } },
     "checks": { "type": "array", "items": { "type": "object", "required": ["command", "result"], "properties": { "command": { "type": "string" }, "result": { "enum": ["pass", "fail", "not_run"] } } } },
     "blockers": { "type": "array", "items": { "type": "string" } },

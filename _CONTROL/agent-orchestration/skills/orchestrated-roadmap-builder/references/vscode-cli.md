@@ -86,6 +86,17 @@ The underlying invocation uses `codex exec -`, the packet's exact worktree throu
 
 The underlying invocation uses `claude -p`, `--no-session-persistence`, the exact packet worktree as the process directory, and the shared JSON result schema. It does not set a fallback model or `--max-budget-usd`.
 
+Supported Claude models and efforts (mirrored in `lib/providers/claude-cli.mjs`):
+
+| Model | Tier | Effort |
+|---|---|---|
+| `claude-opus-4-8` | specialist | `xhigh` only |
+| `claude-opus-5` | specialist | `xhigh` only |
+| `claude-sonnet-5` | primary | `high` or `xhigh` |
+| `claude-haiku-4-5-20251001` | bounded | `high` or `xhigh` |
+
+The launcher refuses any other model or an effort outside the model's set. Only Opus 4.8 currently has capability observations; the other three are routable in policy but cannot win an automatic route until a matched benchmark records observations for them.
+
 ## Interactive Skill Use
 
 For an interactive Codex or Claude session, invoke the skill by name and provide the canonical campaign paths:

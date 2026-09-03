@@ -1,5 +1,34 @@
-const AUTO_LANES = ['TERRA_PRIMARY', 'LUNA_BOUNDED', 'TERRA_LUNA_FANOUT', 'CLAUDE_OPUS48_SPECIALIST'];
+const AUTO_LANES = [
+  'TERRA_PRIMARY',
+  'LUNA_BOUNDED',
+  'TERRA_LUNA_FANOUT',
+  'CLAUDE_OPUS48_SPECIALIST',
+  'CLAUDE_OPUS5_SPECIALIST',
+  'CLAUDE_SONNET5_PRIMARY',
+  'CLAUDE_HAIKU45_BOUNDED'
+];
 const LANE_IDS = ['SOL_OWNED', ...AUTO_LANES, 'HUMAN_AUTHORITY'];
+// Claude lanes share the fit formula of their Codex tier so they compete on measured evidence, not on fit bias.
+const LANE_FIT_TIER = {
+  TERRA_PRIMARY: 'primary',
+  CLAUDE_SONNET5_PRIMARY: 'primary',
+  LUNA_BOUNDED: 'bounded',
+  CLAUDE_HAIKU45_BOUNDED: 'bounded',
+  TERRA_LUNA_FANOUT: 'fanout',
+  CLAUDE_OPUS48_SPECIALIST: 'specialist',
+  CLAUDE_OPUS5_SPECIALIST: 'specialist'
+};
+const ESCALATION = {
+  LUNA_BOUNDED: 'TERRA_PRIMARY',
+  CLAUDE_HAIKU45_BOUNDED: 'CLAUDE_SONNET5_PRIMARY',
+  TERRA_PRIMARY: 'SOL_OWNED',
+  TERRA_LUNA_FANOUT: 'SOL_OWNED',
+  CLAUDE_SONNET5_PRIMARY: 'SOL_OWNED',
+  CLAUDE_OPUS48_SPECIALIST: 'SOL_OWNED',
+  CLAUDE_OPUS5_SPECIALIST: 'SOL_OWNED',
+  SOL_OWNED: 'HUMAN_AUTHORITY',
+  HUMAN_AUTHORITY: 'HUMAN_AUTHORITY'
+};
 const PROFILE_KEYS = ['ambiguity', 'blastRadius', 'crossProduct', 'behaviorChange', 'mechanicalAcceptance', 'authorityRequired', 'filesExpected', 'taskShape'];
 const REVIEW_KEYS = ['contractFidelity', 'boundaryDiscipline', 'sourceUnderstanding', 'refusalIntegrity', 'testQuality', 'evidenceHonesty', 'implementationQuality'];
 const PRIORITY_WEIGHTS = { ignore: 0, low: 2, medium: 5, high: 10 };
@@ -254,10 +283,11 @@ function laneModels(policy, lane) {
 }
 
 function taskFit(profile, lane) {
-  if (lane === 'TERRA_PRIMARY') return 40 + (profile.behaviorChange ? 6 : 0) + (profile.filesExpected > 4 ? 12 : 0) + (profile.ambiguity === 'medium' ? 18 : 0) + (profile.blastRadius === 'medium' ? 10 : 0);
-  if (lane === 'LUNA_BOUNDED') return 35 + (profile.mechanicalAcceptance ? 25 : 0) + (profile.ambiguity === 'low' ? 15 : 0) + (profile.filesExpected <= 6 ? 15 : 0) - (profile.behaviorChange ? 4 : 0);
-  if (lane === 'TERRA_LUNA_FANOUT') return 20 + (profile.mechanicalAcceptance && !profile.behaviorChange && profile.filesExpected > 6 ? 60 : 0) + (!profile.crossProduct ? 5 : -20);
-  if (lane === 'CLAUDE_OPUS48_SPECIALIST') return 18 + (profile.ambiguity === 'medium' ? 10 : 0) + (profile.filesExpected > 4 ? 5 : 0) - (profile.mechanicalAcceptance ? 5 : 0);
+  const tier = LANE_FIT_TIER[lane];
+  if (tier === 'primary') return 40 + (profile.behaviorChange ? 6 : 0) + (profile.filesExpected > 4 ? 12 : 0) + (profile.ambiguity === 'medium' ? 18 : 0) + (profile.blastRadius === 'medium' ? 10 : 0);
+  if (tier === 'bounded') return 35 + (profile.mechanicalAcceptance ? 25 : 0) + (profile.ambiguity === 'low' ? 15 : 0) + (profile.filesExpected <= 6 ? 15 : 0) - (profile.behaviorChange ? 4 : 0);
+  if (tier === 'fanout') return 20 + (profile.mechanicalAcceptance && !profile.behaviorChange && profile.filesExpected > 6 ? 60 : 0) + (!profile.crossProduct ? 5 : -20);
+  if (tier === 'specialist') return 18 + (profile.ambiguity === 'medium' ? 10 : 0) + (profile.filesExpected > 4 ? 5 : 0) - (profile.mechanicalAcceptance ? 5 : 0);
   return 0;
 }
 
@@ -361,10 +391,7 @@ export function decideReroute({ currentLane, correctionRounds = 0, correctionBud
   if (correctionRounds < correctionBudget) {
     return pass({ value: { action: 'stay_in_lane', fromLane: currentLane, toLane: currentLane, correctionRounds, correctionBudget, reason: 'recoverable_correction_within_budget' } });
   }
-  const nextLane = currentLane === 'LUNA_BOUNDED' ? 'TERRA_PRIMARY'
-    : currentLane === 'TERRA_PRIMARY' || currentLane === 'TERRA_LUNA_FANOUT' || currentLane === 'CLAUDE_OPUS48_SPECIALIST' ? 'SOL_OWNED'
-      : currentLane === 'SOL_OWNED' ? 'HUMAN_AUTHORITY'
-        : 'HUMAN_AUTHORITY';
+  const nextLane = ESCALATION[currentLane];
   return pass({ value: { action: 'escalate', fromLane: currentLane, toLane: nextLane, correctionRounds, correctionBudget, reason: 'correction_budget_exhausted' } });
 }
 

@@ -27,6 +27,9 @@ const targetSupport = (overrides = {}) => ({
     'gpt-5.6-terra': { available: true, authorized: true },
     'gpt-5.6-luna': { available: true, authorized: true },
     'claude-opus-4-8': { available: true, authorized: true },
+    'claude-opus-5': { available: true, authorized: true },
+    'claude-sonnet-5': { available: true, authorized: true },
+    'claude-haiku-4-5-20251001': { available: true, authorized: true },
     ...overrides
   }
 });
@@ -123,6 +126,25 @@ test('a recoverable first correction stays in lane and exhaustion escalates', ()
   assert.equal(recoverable.value.action, 'stay_in_lane');
   assert.equal(exhausted.value.action, 'escalate');
   assert.equal(exhausted.value.toLane, 'TERRA_PRIMARY');
+  assert.equal(decideReroute({ currentLane: 'CLAUDE_HAIKU45_BOUNDED', correctionRounds: 1, correctionBudget: 1 }).value.toLane, 'CLAUDE_SONNET5_PRIMARY');
+  assert.equal(decideReroute({ currentLane: 'CLAUDE_SONNET5_PRIMARY', correctionRounds: 1, correctionBudget: 1 }).value.toLane, 'SOL_OWNED');
+  assert.equal(decideReroute({ currentLane: 'CLAUDE_OPUS5_SPECIALIST', correctionRounds: 1, correctionBudget: 1 }).value.toLane, 'SOL_OWNED');
+});
+
+test('unmeasured Claude lanes are policy-visible but cannot win a route until observations exist', () => {
+  const result = routeModelTask({ taskId: 'unmeasured-claude', profile: profile(), ledger, policy, targetSupport: targetSupport() });
+  assert.equal(result.ok, true);
+  for (const lane of ['CLAUDE_OPUS5_SPECIALIST', 'CLAUDE_SONNET5_PRIMARY', 'CLAUDE_HAIKU45_BOUNDED']) {
+    assert.notEqual(result.selectedLane, lane);
+    assert(result.exclusions.some((item) => item.lane === lane && item.reason.startsWith('capability_evidence_missing')), `${lane} should be excluded for missing evidence`);
+    assert.equal(result.receipt.rankedLanes.some((item) => item.lane === lane), false);
+  }
+  const forced = routeModelTask({
+    taskId: 'forced-unmeasured', profile: profile(), ledger, policy, targetSupport: targetSupport(),
+    coordinatorOverride: { lane: 'CLAUDE_HAIKU45_BOUNDED', rationale: 'Attempt to dispatch to a lane with no observations.' }
+  });
+  assert.equal(forced.ok, false);
+  assert.match(forced.errors[0], /coordinator_override_not_eligible:CLAUDE_HAIKU45_BOUNDED/);
 });
 
 test('protected authority and malformed evidence refuse automatic dispatch', () => {

@@ -86,10 +86,17 @@ test('P02 Codex emits a no-history tool-ready descriptor and refuses inherited c
   assert.equal(createCodexAgentDescriptor(codexInput({ modelAvailability: { available: false, authorized: true } })).ok, false);
 });
 
-test('P03 Claude requires an explicit available Opus model, xhigh effort, a brief, and no fallback session state', () => {
+test('P03 Claude requires an explicit available supported model, a tier-valid effort, a brief, and no fallback session state', () => {
   const result = createClaudeCliDescriptor(claudeInput());
   assert.equal(result.ok, true);
   assert.deepEqual(result.descriptor.dispatch.arguments.slice(0, 6), ['--model', 'claude-opus-4-8', '--effort', 'xhigh', '--no-session-persistence', '--brief-path']);
+  assert.equal(createClaudeCliDescriptor(claudeInput({ model: 'claude-opus-5' })).ok, true);
+  assert.equal(createClaudeCliDescriptor(claudeInput({ model: 'claude-sonnet-5', reasoningEffort: 'high' })).ok, true);
+  assert.equal(createClaudeCliDescriptor(claudeInput({ model: 'claude-haiku-4-5-20251001', reasoningEffort: 'high' })).ok, true);
+  assert.equal(createClaudeCliDescriptor(claudeInput({ model: 'claude-opus-4-8', reasoningEffort: 'high' })).ok, false);
+  assert.equal(createClaudeCliDescriptor(claudeInput({ model: 'claude-opus-5', reasoningEffort: 'high' })).ok, false);
+  assert.equal(createClaudeCliDescriptor(claudeInput({ model: 'claude-sonnet-4-8' })).ok, false);
+  assert.equal(createClaudeCliDescriptor(claudeInput({ model: 'claude-haiku-4-5-20251001', reasoningEffort: 'low' })).ok, false);
   assert.equal(createClaudeCliDescriptor(claudeInput({ fallbackModel: 'claude-sonnet' })).ok, false);
   assert.equal(createClaudeCliDescriptor(claudeInput({ sessionPersistence: true })).ok, false);
   assert.equal(createClaudeCliDescriptor(claudeInput({ modelAvailability: { available: true, authorized: false } })).ok, false);

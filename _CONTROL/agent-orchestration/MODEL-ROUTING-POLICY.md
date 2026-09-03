@@ -16,12 +16,17 @@
 | `LUNA_BOUNDED` | exact transforms, fixtures, adapters, local evaluators, inventories, mechanical UI slices | broad refactors, uncertain architecture, authority decisions | high; xhigh for pilot |
 | `TERRA_LUNA_FANOUT` | Terra-owned implementation with disjoint Luna fixtures, corpus work, or adapters | shared-file edits or coupled design | Terra xhigh, Luna high |
 | `CLAUDE_OPUS48_SPECIALIST` | independent architecture challenge, difficult source synthesis, high-value review, or an ambiguity-heavy bounded implementation | routine fixtures, repetitive production, or any lane whose acceptance depends on unreviewed evidence claims | Opus 4.8 xhigh through Claude CLI |
+| `CLAUDE_OPUS5_SPECIALIST` | same task class as the Opus 4.8 specialist lane | same exclusions | Opus 5 xhigh through Claude CLI |
+| `CLAUDE_SONNET5_PRIMARY` | the Terra task class: multi-file implementation, debugging, contracts, bounded owner adapters | owner acceptance or unclear product direction | Sonnet 5 xhigh through Claude CLI; high permitted |
+| `CLAUDE_HAIKU45_BOUNDED` | the Luna task class: exact transforms, fixtures, adapters, local evaluators, inventories | broad refactors, uncertain architecture, authority decisions | Haiku 4.5 high through Claude CLI; xhigh permitted |
 | `HUMAN_AUTHORITY` | promotion, destructive action, live accounts, external acceptance | implementation work | n/a |
+
+The three added Claude lanes are policy-visible but unmeasured. The router excludes any lane whose model has no retained capability observation for the task shape, and a coordinator override cannot select such a lane. Each new model therefore needs its own matched benchmark (the same six task shapes the Opus 4.8 campaign used) before it can win a route. Whether a given model ID resolves on the installed Claude CLI is dispatch-time state; an unresolvable ID is excluded, never substituted.
 
 ## Escalation
 
-- Luna to Terra: one contract correction is insufficient, shared behavior changes, or source ambiguity appears.
-- Terra to Sol: ownership conflicts, architecture must change, evidence contradicts the brief, or integration spans products.
+- Luna to Terra, and Haiku 4.5 to Sonnet 5: one contract correction is insufficient, shared behavior changes, or source ambiguity appears.
+- Terra, Sonnet 5, or any Claude specialist to Sol: ownership conflicts, architecture must change, evidence contradicts the brief, or integration spans products.
 - Any model to human authority: the packet names a protected decision or live external effect.
 
 ## Resource Warnings

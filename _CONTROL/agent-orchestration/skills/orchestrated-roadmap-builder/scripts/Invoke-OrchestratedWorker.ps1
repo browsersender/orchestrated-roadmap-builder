@@ -80,8 +80,16 @@ if (-not $Model) {
 if ($Provider -eq 'codex') {
     if ($Model -notin @('gpt-5.6-sol', 'gpt-5.6-terra', 'gpt-5.6-luna')) { throw "codex_model_unsupported:$Model" }
 } else {
-    if ($Model -ne 'claude-opus-4-8') { throw "claude_model_must_be_explicit_opus_4_8:$Model" }
-    if ($Effort -ne 'xhigh') { throw "claude_effort_must_be_xhigh:$Effort" }
+    # Mirrors CLAUDE_MODELS in lib/providers/claude-cli.mjs. Specialist tiers stay at xhigh so their
+    # observations remain comparable with the existing Opus 4.8 ledger entries.
+    $claudeEfforts = @{
+        'claude-opus-4-8'           = @('xhigh')
+        'claude-opus-5'             = @('xhigh')
+        'claude-sonnet-5'           = @('high', 'xhigh')
+        'claude-haiku-4-5-20251001' = @('high', 'xhigh')
+    }
+    if (-not $claudeEfforts.ContainsKey($Model)) { throw "claude_model_unsupported:$Model" }
+    if ($Effort -notin $claudeEfforts[$Model]) { throw "claude_effort_unsupported_for_model:${Model}:$Effort" }
 }
 
 if (-not $OutputRoot) {

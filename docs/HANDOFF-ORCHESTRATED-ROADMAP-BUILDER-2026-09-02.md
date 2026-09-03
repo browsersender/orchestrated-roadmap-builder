@@ -124,6 +124,7 @@ e6ecad9b201b70949a338f87ea2aac5f840634e8  fix(orchestration): support Windows Po
 - **Terra:** substantial implementation, cross-file reasoning, portability, and bounded owner adapters.
 - **Sol:** architecture, ambiguity, high blast radius, cross-product integration, conflict resolution, and final review.
 - **Claude Opus 4.8 xhigh:** independent architecture challenge, difficult source synthesis, high-value review, or ambiguity-heavy bounded implementation.
+- **Claude Opus 5 xhigh / Sonnet 5 / Haiku 4.5** (added 2026-09-02): specialist, primary (Terra-class), and bounded (Luna-class) lanes respectively. Policy-visible and launcher-accepted, but they have no capability observations yet, so the router excludes them until a matched benchmark records evidence. This closes the one-dimensional Claude routing gap.
 - **Human owner:** protected acceptance, promotion, destructive owner decisions, and representative-user judgment.
 
 No universal winner is assumed. Routing uses comparable observations for the task shape. Provider time, tokens, and reported equivalent cost are telemetry, not billing proof or acceptance authority.

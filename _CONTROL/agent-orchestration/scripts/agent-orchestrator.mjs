@@ -41,7 +41,7 @@ export function validateResult(result) {
   const errors = required(result, ['schemaVersion', 'taskId', 'status', 'model', 'changedPaths', 'checks', 'blockers', 'integrationNote']);
   if (result.schemaVersion !== 1) errors.push('schemaVersion:must_be_1');
   if (!['complete', 'blocked', 'failed'].includes(result.status)) errors.push('status:invalid');
-  if (!['gpt-5.6-sol', 'gpt-5.6-terra', 'gpt-5.6-luna', 'claude-opus-4-8'].includes(result.model)) errors.push('model:invalid');
+  if (!['gpt-5.6-sol', 'gpt-5.6-terra', 'gpt-5.6-luna', 'claude-opus-4-8', 'claude-opus-5', 'claude-sonnet-5', 'claude-haiku-4-5-20251001'].includes(result.model)) errors.push('model:invalid');
   if (!Array.isArray(result.changedPaths)) errors.push('changedPaths:must_be_array');
   if (!Array.isArray(result.checks)) errors.push('checks:must_be_array');
   if (!Array.isArray(result.blockers)) errors.push('blockers:must_be_array');
