@@ -66,6 +66,31 @@ test('portable skill launcher dry-runs Codex and Claude from the same packet', (
   }
 });
 
+test('portable skill launcher survives provider stderr chatter and fails only on a non-zero exit', () => {
+  const value = fixture();
+  const out = fs.mkdtempSync(path.join(os.tmpdir(), 'sola-orchestrated-runs-'));
+  try {
+    // Windows PowerShell 5.1 wraps redirected native stderr in ErrorRecords; the launcher must not die on them.
+    fs.writeFileSync(path.join(value.bin, 'codex.cmd'), '@echo 2026-09-03T00:00:00Z ERROR fake_provider: stderr noise 1>&2\r\n@exit /b 0\r\n');
+    const chatty = run('codex', value.packet, value.bin, ['-Execute', '-OutputRoot', path.join(out, 'chatty')]);
+    assert.equal(chatty.status, 0, `${chatty.stdout}\n${chatty.stderr}`);
+    const result = JSON.parse(chatty.stdout.slice(chatty.stdout.lastIndexOf('{')));
+    assert.equal(result.ok, true);
+    assert.equal(result.provider, 'codex');
+    assert.equal(fs.existsSync(path.join(out, 'chatty', 'transcript.jsonl')), true);
+    assert.equal(fs.existsSync(path.join(out, 'chatty', 'launch.json')), true);
+    assert.match(fs.readFileSync(path.join(out, 'chatty', 'transcript.jsonl'), 'utf8'), /stderr noise/);
+
+    fs.writeFileSync(path.join(value.bin, 'codex.cmd'), '@echo fatal 1>&2\r\n@exit /b 3\r\n');
+    const failing = run('codex', value.packet, value.bin, ['-Execute', '-OutputRoot', path.join(out, 'failing')]);
+    assert.notEqual(failing.status, 0);
+    assert.match(`${failing.stdout}\n${failing.stderr}`, /provider_failed:codex:exit_3/);
+  } finally {
+    fs.rmSync(value.root, { recursive: true, force: true });
+    fs.rmSync(out, { recursive: true, force: true });
+  }
+});
+
 test('portable skill launcher refuses a packet and workspace mismatch', () => {
   const value = fixture();
   const other = fs.mkdtempSync(path.join(os.tmpdir(), 'sola-orchestrated-other-'));

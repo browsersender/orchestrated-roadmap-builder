@@ -175,11 +175,24 @@ New-Item -ItemType Directory -Path $outputDirectory -Force | Out-Null
 [System.IO.File]::WriteAllText((Join-Path $outputDirectory 'launch.json'), (($launch | ConvertTo-Json -Depth 8) + [Environment]::NewLine), [System.Text.UTF8Encoding]::new($false))
 
 $previousLocation = Get-Location
+$previousErrorAction = $ErrorActionPreference
 try {
     Set-Location -LiteralPath $workspace
-    $prompt | & $providerCommand.Source @arguments 2>&1 | Tee-Object -FilePath (Join-Path $outputDirectory $transcriptName)
+    # Windows PowerShell 5.1 wraps each native stderr line in an ErrorRecord when the stream is
+    # redirected; under 'Stop' the first such line terminates the script before the provider
+    # finishes. Provider failure is decided by the exit code below, not by stderr chatter.
+    $ErrorActionPreference = 'Continue'
+    # Tee-Object has no -Encoding in 5.1 and writes UTF-16; keep the transcript UTF-8 like the other run files.
+    $transcriptFile = Join-Path $outputDirectory $transcriptName
+    $transcriptEncoding = [System.Text.UTF8Encoding]::new($false)
+    $prompt | & $providerCommand.Source @arguments 2>&1 | ForEach-Object {
+        $line = [string]$_
+        [System.IO.File]::AppendAllText($transcriptFile, $line + [Environment]::NewLine, $transcriptEncoding)
+        $line
+    }
     $providerExitCode = $LASTEXITCODE
 } finally {
+    $ErrorActionPreference = $previousErrorAction
     Set-Location $previousLocation
 }
 
