@@ -51,6 +51,36 @@ test('intake accepts the packet taskId verbatim and files beneath a directory-ow
     errorCode(() => intake({ taskId: 'R01', changedPaths: beneath }), 'result:task_mismatch');
     errorCode(() => intake({ taskId: 'R00', changedPaths: [path.join(root, 'lib', 'cmcb', 'r01', 'other.js')] }), 'result:path_mismatch');
     errorCode(() => intake({ taskId: 'R00', changedPaths: [path.join(root, 'lib', 'cmcb', 'r00-sibling.js')] }), 'result:path_mismatch');
+
+    // Relative changed paths resolve against the packet's workspace, not the coordinator's cwd.
+    const withTarget = { ...dirPacket, target: { host: 'local', root, portabilityRule: 'test' } };
+    const relative = intakeWorkerResult(state, {
+      result: completeResult(root, { changedPaths: ['lib/cmcb/r00/ledger.js', 'R00.test.mjs'] }),
+      packet: withTarget, leaseId: 'lease-a', now: T3, expectedRevision: state.revision
+    });
+    assert.equal(relative.state.roadmaps.R00.status, 'review');
+    errorCode(() => intakeWorkerResult(state, {
+      result: completeResult(root, { changedPaths: ['lib/cmcb/r01/other.js'] }),
+      packet: withTarget, leaseId: 'lease-a', now: T3, expectedRevision: state.revision
+    }), 'result:path_mismatch');
+
+    // A worker that was never told the lease holder's name reports its own; the coordinator names
+    // the lease holder at intake and the reported identity is kept in the event payload.
+    const selfNamed = intakeWorkerResult(state, {
+      result: completeResult(root, { workerId: '/root', changedPaths: beneath }),
+      packet: dirPacket, leaseId: 'lease-a', workerId: 'worker-a', now: T3, expectedRevision: state.revision
+    });
+    assert.equal(selfNamed.state.roadmaps.R00.status, 'review');
+    assert.equal(selfNamed.receipt.payload.reportedWorkerId, '/root');
+    assert.equal(selfNamed.receipt.actorId, 'worker-a');
+    errorCode(() => intakeWorkerResult(state, {
+      result: completeResult(root, { workerId: '/root', changedPaths: beneath }),
+      packet: dirPacket, leaseId: 'lease-a', now: T3, expectedRevision: state.revision
+    }), 'lease:worker_mismatch');
+    errorCode(() => intakeWorkerResult(state, {
+      result: completeResult(root, { workerId: '/root', changedPaths: beneath }),
+      packet: dirPacket, leaseId: 'lease-a', workerId: 'worker-b', now: T3, expectedRevision: state.revision
+    }), 'lease:worker_mismatch');
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
   }

@@ -520,10 +520,16 @@ function assertResultMatchesPacket(state, result, packet) {
   if (result.packetHash !== packet.packetHash) fail('result:packet_mismatch');
   if (result.sourceRevision !== state.sourceRevision || result.sourceRevision !== packet.sourceRevision) fail('result:source_mismatch');
   // Ownership is a path prefix, matching the campaign collision check: a declared directory owns
-  // every file beneath it.
-  const ownedPaths = (packet.ownedOutputs ?? []).map(normalizePath);
+  // every file beneath it. A relative changed path is relative to the worker's workspace, never
+  // to the coordinator's working directory.
+  const workspaceRoot = nonEmptyString(packet.target?.root) ? packet.target.root : null;
+  const normalizeAgainstWorkspace = (value) => {
+    const text = String(value);
+    return normalizePath(workspaceRoot && !path.isAbsolute(text) ? path.join(workspaceRoot, text) : text);
+  };
+  const ownedPaths = (packet.ownedOutputs ?? []).map(normalizeAgainstWorkspace);
   for (const changedPath of result.changedPaths) {
-    const changed = normalizePath(changedPath);
+    const changed = normalizeAgainstWorkspace(changedPath);
     if (!ownedPaths.some((owned) => changed === owned || changed.startsWith(`${owned}/`))) fail('result:path_mismatch', { changedPath });
   }
 }
@@ -532,21 +538,25 @@ export function intakeWorkerResult(state, input) {
   const timestamp = nowTimestamp(input?.now);
   if (!input?.result) fail('result:required');
   assertResultMatchesPacket(state, input.result, input.packet);
+  // The lease holder is the coordinator's record. A worker that was never told that name reports
+  // its own identity; the coordinator names the lease holder at intake and both are kept.
+  const leaseWorkerId = nonEmptyString(input.workerId) ? input.workerId : input.result.workerId;
   return mutateRoadmap(state, {
     ...input,
     roadmapId: input.result.roadmapId,
-    actorId: input.result.workerId,
+    actorId: leaseWorkerId,
     recordedAt: timestamp,
     type: 'worker_result_intaked',
     payload: {
       resultHash: checksum(input.result),
       resultStatus: input.result.status,
+      reportedWorkerId: input.result.workerId,
       changedPaths: input.result.changedPaths,
       commit: input.result.commit
     }
   }, (roadmap) => {
     if (roadmap.status !== 'running') fail('result:roadmap_not_running', { status: roadmap.status });
-    assertLease(roadmap, input.result.workerId, input.leaseId, timestamp);
+    assertLease(roadmap, leaseWorkerId, input.leaseId, timestamp);
     roadmap.status = input.result.status === 'complete' ? 'review' : input.result.status;
     roadmap.lease = null;
   });
