@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "policyId": "sola-model-tier-routing-v1",
+  "workerSafety": {
+    "minimumCDriveFreeGb": 15,
+    "lowDiskPolicy": "warn_unless_explicitly_authorized",
+    "explicitUserOverrideAllowed": true,
+    "maximumBriefWords": 1500,
+    "maximumReturnWords": 300,
+    "forkContext": false,
+    "childWorkersAllowed": false
+  },
+  "lanes": {
+    "SOL_OWNED": { "model": "gpt-5.6-sol", "reasoningEffort": "xhigh" },
+    "TERRA_PRIMARY": { "model": "gpt-5.6-terra", "reasoningEffort": "xhigh" },
+    "LUNA_BOUNDED": { "model": "gpt-5.6-luna", "reasoningEffort": "high" },
+    "TERRA_LUNA_FANOUT": { "model": "gpt-5.6-terra", "reasoningEffort": "xhigh", "fanoutModel": "gpt-5.6-luna", "fanoutReasoningEffort": "high" },
+    "CLAUDE_OPUS48_SPECIALIST": { "model": "claude-opus-4-8", "reasoningEffort": "xhigh", "interface": "claude-cli" },
+    "HUMAN_AUTHORITY": { "model": null, "reasoningEffort": null }
+  }
+}

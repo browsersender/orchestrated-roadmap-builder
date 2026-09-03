@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sola.dispatch-receipt.v1",
+  "title": "Sola provider dispatch descriptor v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "descriptorId",
+    "providerId",
+    "status",
+    "packet",
+    "dispatch",
+    "authority",
+    "limits"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "descriptorId": { "type": "string", "minLength": 1 },
+    "providerId": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+    "status": { "const": "ready" },
+    "packet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["taskId", "campaignId", "roadmapId", "sourceRevision", "packetHash", "briefPath"],
+      "properties": {
+        "taskId": { "type": "string", "minLength": 1 },
+        "campaignId": { "type": "string", "minLength": 1 },
+        "roadmapId": { "type": "string", "minLength": 1 },
+        "sourceRevision": { "type": "string", "minLength": 7 },
+        "packetHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "briefPath": { "type": "string", "minLength": 3 }
+      }
+    },
+    "dispatch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target", "arguments", "context"],
+      "properties": {
+        "target": { "type": "string", "minLength": 1 },
+        "arguments": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "context": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["history", "briefPath"],
+          "properties": {
+            "history": { "const": "none" },
+            "briefPath": { "type": "string", "minLength": 3 }
+          }
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["execution", "promotion"],
+      "properties": {
+        "execution": { "const": "coordinator_required" },
+        "promotion": { "const": "not_granted" }
+      }
+    },
+    "limits": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    }
+  }
+}

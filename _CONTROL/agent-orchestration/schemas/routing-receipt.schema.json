@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sola.routing-receipt.v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "receiptId", "status", "policy", "taskProfile", "automaticDispatch", "selectedLane", "rankedLanes", "reasons", "evidence", "coordinatorOverride", "resourceTelemetry", "correction", "limits"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "receiptId": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["routed", "refused", "escalated"] },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policyId", "schemaVersion"],
+      "properties": {
+        "policyId": { "type": "string", "minLength": 1 },
+        "schemaVersion": { "const": 1 }
+      }
+    },
+    "taskProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ambiguity", "blastRadius", "crossProduct", "behaviorChange", "mechanicalAcceptance", "authorityRequired", "filesExpected", "taskShape"],
+      "properties": {
+        "ambiguity": { "enum": ["low", "medium", "high"] },
+        "blastRadius": { "enum": ["low", "medium", "high"] },
+        "crossProduct": { "type": "boolean" },
+        "behaviorChange": { "type": "boolean" },
+        "mechanicalAcceptance": { "type": "boolean" },
+        "authorityRequired": { "type": "boolean" },
+        "filesExpected": { "type": "integer", "minimum": 1 },
+        "taskShape": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "automaticDispatch": { "type": "boolean" },
+    "selectedLane": { "type": ["string", "null"], "enum": ["SOL_OWNED", "TERRA_PRIMARY", "LUNA_BOUNDED", "TERRA_LUNA_FANOUT", "CLAUDE_OPUS48_SPECIALIST", "HUMAN_AUTHORITY", null] },
+    "rankedLanes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["lane", "models", "score", "scoreComponents", "reasons", "observationIds", "telemetry"],
+        "properties": {
+          "lane": { "enum": ["TERRA_PRIMARY", "LUNA_BOUNDED", "TERRA_LUNA_FANOUT", "CLAUDE_OPUS48_SPECIALIST"] },
+          "models": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+          "score": { "type": "number" },
+          "scoreComponents": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["taskFit", "evidenceReview", "resourceTime", "resourceTokens", "resourceEquivalentCost"],
+            "properties": {
+              "taskFit": { "type": "number" },
+              "evidenceReview": { "type": "number" },
+              "resourceTime": { "type": "number" },
+              "resourceTokens": { "type": "number" },
+              "resourceEquivalentCost": { "type": "number" }
+            }
+          },
+          "reasons": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+          "observationIds": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+          "telemetry": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["elapsedSeconds", "tokens", "equivalentCost"],
+            "properties": {
+              "elapsedSeconds": { "type": ["number", "null"], "minimum": 0 },
+              "tokens": { "type": ["number", "null"], "minimum": 0 },
+              "equivalentCost": { "type": ["number", "null"], "minimum": 0 }
+            }
+          }
+        }
+      }
+    },
+    "reasons": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ledgerId", "taskShape", "observationIds", "aggregates"],
+      "properties": {
+        "ledgerId": { "type": ["string", "null"] },
+        "taskShape": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "observationIds": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "aggregates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["model", "observationIds", "observationCount", "rankableObservationCount", "verdicts", "averageReviewScore", "averageElapsedSeconds", "averageInputTokens", "averageOutputTokens", "averageReportedEquivalentCostUsd"],
+            "properties": {
+              "model": { "type": "string", "minLength": 1 },
+              "observationIds": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+              "observationCount": { "type": "integer", "minimum": 1 },
+              "rankableObservationCount": { "type": "integer", "minimum": 0 },
+              "verdicts": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+              "averageReviewScore": { "type": "number", "minimum": 0, "maximum": 4 },
+              "averageElapsedSeconds": { "type": ["number", "null"], "minimum": 0 },
+              "averageInputTokens": { "type": ["number", "null"], "minimum": 0 },
+              "averageOutputTokens": { "type": ["number", "null"], "minimum": 0 },
+              "averageReportedEquivalentCostUsd": { "type": ["number", "null"], "minimum": 0 }
+            }
+          }
+        }
+      }
+    },
+    "coordinatorOverride": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requested", "applied", "lane", "rationale"],
+      "properties": {
+        "requested": { "type": "boolean" },
+        "applied": { "type": "boolean" },
+        "lane": { "type": ["string", "null"], "enum": ["SOL_OWNED", "TERRA_PRIMARY", "LUNA_BOUNDED", "TERRA_LUNA_FANOUT", "CLAUDE_OPUS48_SPECIALIST", "HUMAN_AUTHORITY", null] },
+        "rationale": { "type": ["string", "null"] }
+      }
+    },
+    "resourceTelemetry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["costSemantics", "billingStatus", "acceptanceStatus", "preferences", "reportedEquivalentCostUsdByModel"],
+      "properties": {
+        "costSemantics": { "type": "string", "minLength": 1 },
+        "billingStatus": { "const": "not_billing" },
+        "acceptanceStatus": { "const": "not_acceptance_evidence" },
+        "preferences": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["time", "tokens", "equivalentCost"],
+          "properties": {
+            "time": { "enum": ["ignore", "low", "medium", "high"] },
+            "tokens": { "enum": ["ignore", "low", "medium", "high"] },
+            "equivalentCost": { "enum": ["ignore", "low", "medium", "high"] }
+          }
+        },
+        "reportedEquivalentCostUsdByModel": { "type": "object", "additionalProperties": { "type": ["number", "null"], "minimum": 0 } }
+      }
+    },
+    "correction": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action", "fromLane", "toLane", "correctionRounds", "correctionBudget", "reason"],
+      "properties": {
+        "action": { "enum": ["not_started", "stay_in_lane", "escalate"] },
+        "fromLane": { "type": ["string", "null"] },
+        "toLane": { "type": ["string", "null"] },
+        "correctionRounds": { "type": "integer", "minimum": 0 },
+        "correctionBudget": { "type": "integer", "minimum": 0 },
+        "reason": { "type": "string", "minLength": 1 }
+      }
+    },
+    "limits": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "status": { "const": "routed" } } },
+      "then": {
+        "properties": {
+          "selectedLane": { "type": "string" },
+          "rankedLanes": { "minItems": 1 },
+          "evidence": { "properties": { "observationIds": { "minItems": 1 } } }
+        }
+      }
+    }
+  ]
+}

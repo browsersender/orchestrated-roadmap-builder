@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sola.evidence-receipt.v1",
+  "title": "Sola portable evidence receipt v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion", "receiptId", "kind", "decision", "campaignId", "roadmapId", "sourceRevision",
+    "gateIdentity", "evidenceClass", "target", "evidence", "reasons", "recordedAt", "authority"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "receiptId": { "type": "string", "minLength": 1 },
+    "kind": { "enum": ["reuse_decision", "invalidation_decision", "scope_audit", "integration", "verification"] },
+    "decision": { "enum": ["reuse", "rerun", "pass", "refuse", "verified"] },
+    "campaignId": { "type": "string", "minLength": 1 },
+    "roadmapId": { "type": "string", "minLength": 1 },
+    "sourceRevision": { "type": "string", "minLength": 1 },
+    "packetHash": { "type": "string", "minLength": 1 },
+    "gateIdentity": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "phaseId": { "type": "string", "minLength": 1 },
+        "catalogHash": { "type": "string", "minLength": 1 },
+        "hash": { "type": "string", "minLength": 1 }
+      }
+    },
+    "evidenceClass": { "type": "string", "minLength": 1 },
+    "target": {
+      "type": "object",
+      "required": ["host"],
+      "additionalProperties": false,
+      "properties": {
+        "host": { "type": "string", "minLength": 1 },
+        "environmentId": { "type": "string", "minLength": 1 },
+        "runtime": { "type": "string", "minLength": 1 },
+        "platform": { "type": "string", "minLength": 1 },
+        "dependencyLockHash": { "type": "string", "minLength": 1 }
+      }
+    },
+    "evidence": { "type": "object" },
+    "reasons": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+    "recordedAt": { "type": "string", "format": "date-time" },
+    "authority": { "type": "string", "minLength": 1 }
+  }
+}

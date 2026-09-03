@@ -1,0 +1,505 @@
+{
+  "schemaVersion": 1,
+  "ledgerId": "sola-agent-capability-observations",
+  "updatedAt": "2026-09-02T23:18:34.7369299Z",
+  "costSemantics": "Claude reportedEquivalentCostUsd fields are CLI telemetry from Claude Max runs, not observed Anthropic API-key charges.",
+  "observations": [
+    {
+      "schemaVersion": 1,
+      "observationId": "oracle-model-fit-20260902-luna-01",
+      "taskId": "LUNA-ORACLE-CALIBRATION-PILOT-01",
+      "model": "gpt-5.6-luna",
+      "taskShape": [
+        "bounded-kernel",
+        "explicit-statistical-contract",
+        "typed-refusal",
+        "offline-evaluator",
+        "five-file-scope"
+      ],
+      "observed": {
+        "briefWords": 522,
+        "returnWords": 71,
+        "elapsedSeconds": 656,
+        "changedFiles": 5,
+        "insertions": 727,
+        "deletions": 0,
+        "correctionRounds": 0,
+        "outOfScopeEdits": 0
+      },
+      "review": {
+        "contractFidelity": 4,
+        "boundaryDiscipline": 4,
+        "sourceUnderstanding": 4,
+        "refusalIntegrity": 4,
+        "testQuality": 4,
+        "evidenceHonesty": 4,
+        "implementationQuality": 3
+      },
+      "verdict": "retain_lane",
+      "notes": [
+        "Elapsed time is a proxy from the coordinator override commit to the final worker commit, not runtime telemetry.",
+        "Focused 6/6 and full 294/294 tests passed again under Sol review.",
+        "The real Oracle corpus refused calibration and emitted no Brier or ECE values.",
+        "Implementation and proof were split across two bounded commits; no correction prompt was required.",
+        "One pilot supports this task shape only and does not establish a global model ranking."
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "observationId": "oracle-model-fit-20260902-terra-01",
+      "taskId": "TERRA-ORACLE-QUALITY-PILOT-01",
+      "model": "gpt-5.6-terra",
+      "taskShape": [
+        "bounded-kernel",
+        "source-interpretation",
+        "heuristic-diagnostics",
+        "offline-evaluator",
+        "five-file-scope"
+      ],
+      "observed": {
+        "briefWords": 551,
+        "returnWords": 101,
+        "elapsedSeconds": 525,
+        "changedFiles": 5,
+        "insertions": 867,
+        "deletions": 0,
+        "correctionRounds": 0,
+        "outOfScopeEdits": 0
+      },
+      "review": {
+        "contractFidelity": 4,
+        "boundaryDiscipline": 4,
+        "sourceUnderstanding": 4,
+        "refusalIntegrity": 4,
+        "testQuality": 4,
+        "evidenceHonesty": 4,
+        "implementationQuality": 3
+      },
+      "verdict": "retain_lane",
+      "notes": [
+        "Elapsed time is a proxy from the coordinator override commit to the final worker commit, not runtime telemetry.",
+        "Focused 5/5 and full 293/293 tests passed again under Sol review.",
+        "The real SDQ-01 case measured 395 words with 393 outside zero-radius expected-term windows while preserving the legacy pass field.",
+        "Heuristic flags remained explicitly separate from correctness and acceptance claims.",
+        "One pilot supports this task shape only and does not establish a global model ranking."
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "observationId": "oracle-model-fit-20260902-luna-02",
+      "taskId": "LUNA-ORACLE-INTERPRETIVE-CROSSOVER-02",
+      "model": "gpt-5.6-luna",
+      "taskShape": [
+        "bounded-kernel",
+        "source-interpretation",
+        "heuristic-diagnostics",
+        "offline-evaluator",
+        "five-file-scope"
+      ],
+      "observed": {
+        "briefWords": 426,
+        "returnWords": 111,
+        "elapsedSeconds": 804,
+        "changedFiles": 5,
+        "insertions": 5095,
+        "deletions": 0,
+        "correctionRounds": 0,
+        "outOfScopeEdits": 0
+      },
+      "review": {
+        "contractFidelity": 4,
+        "boundaryDiscipline": 4,
+        "sourceUnderstanding": 4,
+        "refusalIntegrity": 4,
+        "testQuality": 4,
+        "evidenceHonesty": 4,
+        "implementationQuality": 3
+      },
+      "verdict": "retain_lane",
+      "notes": [
+        "Elapsed time is a commit-time proxy, not runtime telemetry.",
+        "Focused 7/7 and full 294/294 tests passed under Sol review.",
+        "Interpretive findings remained heuristic-only and did not widen authority.",
+        "The 4415-line JSON proof dominates artifact size; future Luna packets should bound expansion when compact summaries are sufficient."
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "observationId": "oracle-model-fit-20260902-terra-02",
+      "taskId": "TERRA-ORACLE-STATISTICAL-CROSSOVER-02",
+      "model": "gpt-5.6-terra",
+      "taskShape": [
+        "bounded-kernel",
+        "explicit-statistical-contract",
+        "typed-refusal",
+        "offline-evaluator",
+        "five-file-scope"
+      ],
+      "observed": {
+        "briefWords": 405,
+        "returnWords": 119,
+        "elapsedSeconds": 511,
+        "changedFiles": 5,
+        "insertions": 406,
+        "deletions": 0,
+        "correctionRounds": 0,
+        "outOfScopeEdits": 0
+      },
+      "review": {
+        "contractFidelity": 4,
+        "boundaryDiscipline": 4,
+        "sourceUnderstanding": 4,
+        "refusalIntegrity": 4,
+        "testQuality": 4,
+        "evidenceHonesty": 4,
+        "implementationQuality": 4
+      },
+      "verdict": "retain_lane",
+      "notes": [
+        "Elapsed time is a commit-time proxy, not runtime telemetry.",
+        "Focused 6/6 and full 294/294 tests passed under Sol review.",
+        "The exact sign test matched the frozen hand-counted corpus.",
+        "The proof explicitly excludes case-selection and label-validity claims."
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "observationId": "cinema-witness-foundry-20260902-terra-01",
+      "taskId": "TERRA-CWL-R00-R02-CORE-01",
+      "model": "gpt-5.6-terra",
+      "taskShape": [
+        "substantial-cross-file",
+        "owner-adapter",
+        "identity-abi",
+        "real-browser-proof",
+        "eight-file-scope"
+      ],
+      "observed": {
+        "briefWords": 541,
+        "returnWords": 0,
+        "elapsedSeconds": 1255,
+        "changedFiles": 8,
+        "insertions": 1386,
+        "deletions": 0,
+        "correctionRounds": 1,
+        "outOfScopeEdits": 0
+      },
+      "review": {
+        "contractFidelity": 4,
+        "boundaryDiscipline": 4,
+        "sourceUnderstanding": 4,
+        "refusalIntegrity": 4,
+        "testQuality": 4,
+        "evidenceHonesty": 4,
+        "implementationQuality": 4
+      },
+      "verdict": "retain_lane_with_portability_rule",
+      "notes": [
+        "Elapsed time is a commit-time proxy from packet freeze to final worker proof, not runtime telemetry.",
+        "Terra implemented the Cinema identity ABI, Program B adapter, real headless Canvas proof, and focused tests without copying owner rendering logic.",
+        "The worker-local proof passed, but its first source resolution assumed a laptop path. Sol corrected portability and reran the slice on the Lab.",
+        "Final Lab integration passed focused 11/11 and full @sola/stage 131/131."
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "observationId": "cinema-witness-foundry-20260902-luna-01",
+      "taskId": "LUNA-CWL-WITNESS-FIXTURES-01",
+      "model": "gpt-5.6-luna",
+      "taskShape": [
+        "bounded-fixture-corpus",
+        "hostile-controls",
+        "validator",
+        "typed-refusal",
+        "five-file-scope"
+      ],
+      "observed": {
+        "briefWords": 304,
+        "returnWords": 0,
+        "elapsedSeconds": 736,
+        "changedFiles": 5,
+        "insertions": 980,
+        "deletions": 0,
+        "correctionRounds": 0,
+        "outOfScopeEdits": 0
+      },
+      "review": {
+        "contractFidelity": 4,
+        "boundaryDiscipline": 4,
+        "sourceUnderstanding": 4,
+        "refusalIntegrity": 4,
+        "testQuality": 4,
+        "evidenceHonesty": 4,
+        "implementationQuality": 4
+      },
+      "verdict": "retain_lane",
+      "notes": [
+        "Elapsed time is a commit-time proxy from packet freeze to final worker commit, not runtime telemetry.",
+        "Luna produced exactly five declared files and fourteen deterministic cases: baseline, visible law change, hidden-law pixel control, and eleven hostile refusals.",
+        "The focused fixture suite passed 5/5 without correction or out-of-scope edits.",
+        "Sol integrated the corpus with Terra's implementation and proved the combined path on the Lab."
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "observationId": "oracle-model-fit-20260902-opus48-calibration-01",
+      "taskId": "CLAUDE-OPUS48-ORACLE-CALIBRATION-01",
+      "model": "claude-opus-4-8",
+      "taskShape": [
+        "bounded-kernel",
+        "explicit-statistical-contract",
+        "typed-refusal",
+        "offline-evaluator",
+        "five-file-scope"
+      ],
+      "observed": {
+        "briefWords": 141,
+        "returnWords": 0,
+        "elapsedSeconds": 709.653,
+        "apiSeconds": 653.133,
+        "turns": 34,
+        "inputTokens": 4863,
+        "outputTokens": 37990,
+        "reportedEquivalentCostUsd": 2.874807,
+        "changedFiles": 5,
+        "insertions": 387,
+        "deletions": 0,
+        "correctionRounds": 0,
+        "outOfScopeEdits": 0
+      },
+      "review": {
+        "contractFidelity": 4,
+        "boundaryDiscipline": 4,
+        "sourceUnderstanding": 4,
+        "refusalIntegrity": 4,
+        "testQuality": 4,
+        "evidenceHonesty": 4,
+        "implementationQuality": 4
+      },
+      "verdict": "retain_lane",
+      "notes": [
+        "Focused 11/11 and full 299/299 tests passed in the worker run.",
+        "The real corpus refused calibration readiness and emitted no invented Brier or ECE values.",
+        "The worker declined the repository stop hook because its requested log files were outside the exact five-file packet."
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "observationId": "oracle-model-fit-20260902-opus48-quality-01",
+      "taskId": "CLAUDE-OPUS48-ORACLE-QUALITY-01",
+      "model": "claude-opus-4-8",
+      "taskShape": [
+        "bounded-kernel",
+        "source-interpretation",
+        "heuristic-diagnostics",
+        "offline-evaluator",
+        "five-file-scope"
+      ],
+      "observed": {
+        "briefWords": 142,
+        "returnWords": 0,
+        "elapsedSeconds": 703.831,
+        "apiSeconds": 647.992,
+        "turns": 35,
+        "inputTokens": 4754,
+        "outputTokens": 54943,
+        "reportedEquivalentCostUsd": 3.622565,
+        "changedFiles": 5,
+        "insertions": 968,
+        "deletions": 0,
+        "correctionRounds": 0,
+        "selfRepairRounds": 1,
+        "outOfScopeEdits": 0
+      },
+      "review": {
+        "contractFidelity": 4,
+        "boundaryDiscipline": 4,
+        "sourceUnderstanding": 4,
+        "refusalIntegrity": 4,
+        "testQuality": 4,
+        "evidenceHonesty": 4,
+        "implementationQuality": 3
+      },
+      "verdict": "retain_lane",
+      "notes": [
+        "Focused 5/5 and full 293/293 tests passed.",
+        "The worker caught and amended its own shell-command quoting error before closeout.",
+        "Its SDQ-01 word count differed from Terra because the benchmark froze the interface but not the tokenization protocol; this prevents a scientific quality ranking."
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "observationId": "oracle-model-fit-20260902-opus48-interpretive-01",
+      "taskId": "CLAUDE-OPUS48-ORACLE-INTERPRETIVE-02",
+      "model": "claude-opus-4-8",
+      "taskShape": [
+        "bounded-kernel",
+        "source-interpretation",
+        "heuristic-diagnostics",
+        "offline-evaluator",
+        "five-file-scope"
+      ],
+      "observed": {
+        "briefWords": 143,
+        "returnWords": 0,
+        "elapsedSeconds": 581.756,
+        "apiSeconds": 531.596,
+        "turns": 32,
+        "inputTokens": 4667,
+        "outputTokens": 44969,
+        "reportedEquivalentCostUsd": 2.720045,
+        "changedFiles": 5,
+        "insertions": 2309,
+        "deletions": 0,
+        "correctionRounds": 0,
+        "outOfScopeEdits": 0
+      },
+      "review": {
+        "contractFidelity": 4,
+        "boundaryDiscipline": 4,
+        "sourceUnderstanding": 4,
+        "refusalIntegrity": 4,
+        "testQuality": 4,
+        "evidenceHonesty": 4,
+        "implementationQuality": 4
+      },
+      "verdict": "retain_lane",
+      "notes": [
+        "Focused 12/12 and full 300/300 tests passed.",
+        "The implementation was materially more compact than Luna's 5,095-insertion crossover while preserving heuristic-only authority.",
+        "It remained slower and more expensive than the normal bounded-worker route."
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "observationId": "oracle-model-fit-20260902-opus48-statistical-01",
+      "taskId": "CLAUDE-OPUS48-ORACLE-STATISTICAL-02",
+      "model": "claude-opus-4-8",
+      "taskShape": [
+        "bounded-kernel",
+        "explicit-statistical-contract",
+        "typed-refusal",
+        "offline-evaluator",
+        "five-file-scope"
+      ],
+      "observed": {
+        "briefWords": 135,
+        "returnWords": 0,
+        "elapsedSeconds": 609.924,
+        "apiSeconds": 566.555,
+        "turns": 30,
+        "inputTokens": 4472,
+        "outputTokens": 45103,
+        "reportedEquivalentCostUsd": 3.075699,
+        "changedFiles": 5,
+        "insertions": 739,
+        "deletions": 0,
+        "correctionRounds": 0,
+        "outOfScopeEdits": 0
+      },
+      "review": {
+        "contractFidelity": 4,
+        "boundaryDiscipline": 4,
+        "sourceUnderstanding": 4,
+        "refusalIntegrity": 4,
+        "testQuality": 4,
+        "evidenceHonesty": 4,
+        "implementationQuality": 3
+      },
+      "verdict": "retain_lane",
+      "notes": [
+        "Focused 13/13 and full 301/301 tests passed.",
+        "Terra's matched statistical adapter remained substantially more compact at 406 insertions.",
+        "No correction prompt or out-of-scope edit was required."
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "observationId": "cinema-witness-foundry-20260902-opus48-core-01",
+      "taskId": "CLAUDE-OPUS48-CWL-R00-R02-CORE",
+      "model": "claude-opus-4-8",
+      "taskShape": [
+        "substantial-cross-file",
+        "owner-adapter",
+        "identity-abi",
+        "real-pixel-proof",
+        "eight-file-scope"
+      ],
+      "observed": {
+        "briefWords": 179,
+        "returnWords": 0,
+        "elapsedSeconds": 1001.61,
+        "apiSeconds": 949.594,
+        "turns": 41,
+        "inputTokens": 5127,
+        "outputTokens": 78257,
+        "reportedEquivalentCostUsd": 4.277663,
+        "changedFiles": 8,
+        "insertions": 1604,
+        "deletions": 1,
+        "correctionRounds": 1,
+        "outOfScopeEdits": 0
+      },
+      "review": {
+        "contractFidelity": 2,
+        "boundaryDiscipline": 4,
+        "sourceUnderstanding": 3,
+        "refusalIntegrity": 3,
+        "testQuality": 4,
+        "evidenceHonesty": 2,
+        "implementationQuality": 2
+      },
+      "verdict": "narrow_lane",
+      "notes": [
+        "The worker implemented a partial custom software rasterizer instead of a browser Canvas runtime while calling the path real Canvas; the candidate is not adopted over Terra's headless-browser implementation.",
+        "The assembled candidate initially failed to resolve a co-located Program B owner and required one Sol correction.",
+        "The raw-byte owner source hash changed from a0ebffc5... locally to e1e16cb9... on the Lab due checkout-byte normalization, invalidating the candidate's cross-machine source-identity claim.",
+        "After the resolver correction, the assembled local candidate passed 31/31 focused and 151/151 full tests with zero skips; the Lab commands also returned zero and produced committed proof on 3c102aecaea8d887f551d865e9eac8894ec640ab.",
+        "This branch is benchmark evidence only and grants no Cinema roadmap credit."
+      ]
+    },
+    {
+      "schemaVersion": 1,
+      "observationId": "cinema-witness-foundry-20260902-opus48-fixtures-01",
+      "taskId": "CLAUDE-OPUS48-CWL-FIXTURES",
+      "model": "claude-opus-4-8",
+      "taskShape": [
+        "bounded-fixture-corpus",
+        "hostile-controls",
+        "validator",
+        "typed-refusal",
+        "five-file-scope"
+      ],
+      "observed": {
+        "briefWords": 120,
+        "returnWords": 0,
+        "elapsedSeconds": 722.081,
+        "apiSeconds": 667.492,
+        "turns": 32,
+        "inputTokens": 8478,
+        "outputTokens": 58213,
+        "reportedEquivalentCostUsd": 3.0202495,
+        "changedFiles": 5,
+        "insertions": 2555,
+        "deletions": 0,
+        "correctionRounds": 0,
+        "outOfScopeEdits": 0
+      },
+      "review": {
+        "contractFidelity": 4,
+        "boundaryDiscipline": 4,
+        "sourceUnderstanding": 4,
+        "refusalIntegrity": 4,
+        "testQuality": 4,
+        "evidenceHonesty": 4,
+        "implementationQuality": 3
+      },
+      "verdict": "retain_lane",
+      "notes": [
+        "The worker produced exactly five files, fourteen deterministic fixtures, and a passing 14/14 focused run.",
+        "Luna produced the same fixture count and behavior in 980 insertions versus Opus's 2,555, so Luna remains the preferred routine fixture worker.",
+        "No correction prompt or out-of-scope edit was required."
+      ]
+    }
+  ]
+}

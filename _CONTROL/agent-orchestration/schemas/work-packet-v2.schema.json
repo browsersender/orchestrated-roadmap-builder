@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sola.work-packet.v2",
+  "title": "Sola roadmap worker packet v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "taskId",
+    "campaignId",
+    "roadmapId",
+    "sourceRevision",
+    "objective",
+    "briefPath",
+    "taskProfile",
+    "inputs",
+    "ownedOutputs",
+    "prohibitedPaths",
+    "constraints",
+    "acceptanceChecks",
+    "phaseGates",
+    "evidencePolicy",
+    "target",
+    "barCatalogHash",
+    "returnContract",
+    "packetHash"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 2 },
+    "taskId": { "type": "string", "minLength": 1 },
+    "campaignId": { "type": "string", "minLength": 1 },
+    "roadmapId": { "type": "string", "pattern": "^[A-Z0-9-]+$" },
+    "sourceRevision": { "type": "string", "minLength": 7 },
+    "objective": { "type": "string", "minLength": 1 },
+    "briefPath": { "type": "string", "minLength": 3 },
+    "taskProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ambiguity", "blastRadius", "crossProduct", "behaviorChange", "mechanicalAcceptance", "authorityRequired", "filesExpected"],
+      "properties": {
+        "ambiguity": { "enum": ["low", "medium", "high"] },
+        "blastRadius": { "enum": ["low", "medium", "high"] },
+        "crossProduct": { "type": "boolean" },
+        "behaviorChange": { "type": "boolean" },
+        "mechanicalAcceptance": { "type": "boolean" },
+        "authorityRequired": { "type": "boolean" },
+        "filesExpected": { "type": "integer", "minimum": 1 },
+        "taskShape": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 }, "uniqueItems": true }
+      }
+    },
+    "inputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 3 }
+    },
+    "ownedOutputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 3 }
+    },
+    "prohibitedPaths": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["forkContext", "childWorkersAllowed", "maximumBriefWords", "maximumReturnWords", "correctionBudget"],
+      "properties": {
+        "forkContext": { "const": false },
+        "childWorkersAllowed": { "const": false },
+        "maximumBriefWords": { "type": "integer", "minimum": 1, "maximum": 1500 },
+        "maximumReturnWords": { "type": "integer", "minimum": 1, "maximum": 300 },
+        "correctionBudget": { "type": "integer", "minimum": 0, "maximum": 2 }
+      }
+    },
+    "acceptanceChecks": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "phaseGates": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["phaseId", "mustFire", "mustStaySilent"],
+        "properties": {
+          "phaseId": { "type": "string", "minLength": 1 },
+          "mustFire": { "type": "string", "minLength": 1 },
+          "mustStaySilent": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "evidencePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reuse", "rerunWhen"],
+      "properties": {
+        "reuse": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+        "rerunWhen": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["host", "root", "portabilityRule"],
+      "properties": {
+        "host": { "type": "string", "minLength": 1 },
+        "root": { "type": "string", "minLength": 3 },
+        "portabilityRule": { "type": "string", "minLength": 1 }
+      }
+    },
+    "barCatalogHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "returnContract": { "type": "string", "minLength": 1 },
+    "packetHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sola.worker-result.v2.portable",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "campaignId",
+    "taskId",
+    "roadmapId",
+    "packetHash",
+    "sourceRevision",
+    "workerId",
+    "status",
+    "model",
+    "changedPaths",
+    "checks",
+    "blockers",
+    "sparks",
+    "integrationNote",
+    "resultedAt",
+    "commit"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 2 },
+    "campaignId": { "type": "string", "minLength": 1 },
+    "taskId": { "type": "string", "minLength": 1 },
+    "roadmapId": { "type": "string", "minLength": 1 },
+    "packetHash": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "sourceRevision": { "type": "string", "minLength": 7 },
+    "workerId": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["complete", "blocked", "failed"] },
+    "model": { "type": "string", "minLength": 1 },
+    "changedPaths": { "type": "array", "items": { "type": "string" } },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["command", "result"],
+        "properties": {
+          "command": { "type": "string" },
+          "result": { "enum": ["pass", "fail", "not_run"] }
+        }
+      }
+    },
+    "blockers": { "type": "array", "items": { "type": "string" } },
+    "sparks": { "type": "array", "items": { "type": "string" } },
+    "integrationNote": { "type": "string" },
+    "resultedAt": { "type": "string", "format": "date-time" },
+    "commit": { "type": ["string", "null"] }
+  }
+}

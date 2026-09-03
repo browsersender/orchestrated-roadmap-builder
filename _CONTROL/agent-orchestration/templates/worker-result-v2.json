@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 2,
+  "campaignId": "campaign-id",
+  "taskId": "ROADMAP-ID",
+  "roadmapId": "ROADMAP-ID",
+  "packetHash": "packet-semantic-hash",
+  "sourceRevision": "frozen-source-revision",
+  "workerId": "worker-identity",
+  "status": "complete",
+  "changedPaths": [
+    "D:\\absolute\\owned-output-path"
+  ],
+  "checks": [
+    {
+      "command": "node --test _CONTROL/agent-orchestration/tests/example.test.mjs",
+      "result": "pass"
+    }
+  ],
+  "blockers": [],
+  "sparks": [],
+  "integrationNote": "Requires coordinator review before integration.",
+  "resultedAt": "2026-09-02T00:00:00.000Z",
+  "commit": null
+}

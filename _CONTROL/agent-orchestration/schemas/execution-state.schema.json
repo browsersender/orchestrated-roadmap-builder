@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sola.execution-state.v2",
+  "type": "object",
+  "required": ["schemaVersion", "campaignId", "campaignHash", "sourceRevision", "createdAt", "updatedAt", "revision", "roadmaps", "events", "eventHead"],
+  "properties": {
+    "schemaVersion": { "const": 2 },
+    "campaignId": { "$ref": "#/$defs/nonEmptyString" },
+    "campaignHash": { "$ref": "#/$defs/nonEmptyString" },
+    "sourceRevision": { "$ref": "#/$defs/nonEmptyString" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "updatedAt": { "type": "string", "format": "date-time" },
+    "revision": { "type": "integer", "minimum": 0 },
+    "roadmaps": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/$defs/roadmap" }
+    },
+    "events": { "type": "array", "items": { "$ref": "#/$defs/event" } },
+    "eventHead": { "type": "string", "minLength": 1 }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "nonEmptyString": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["not_started", "ready", "leased", "running", "review", "integrating", "verified", "blocked", "failed"] },
+    "lease": {
+      "type": "object",
+      "required": ["leaseId", "workerId", "acquiredAt", "expiresAt"],
+      "properties": {
+        "leaseId": { "$ref": "#/$defs/nonEmptyString" },
+        "workerId": { "$ref": "#/$defs/nonEmptyString" },
+        "acquiredAt": { "type": "string", "format": "date-time" },
+        "expiresAt": { "type": "string", "format": "date-time" }
+      },
+      "additionalProperties": false
+    },
+    "roadmap": {
+      "type": "object",
+      "required": ["status", "lease", "corrections", "phases"],
+      "properties": {
+        "status": { "$ref": "#/$defs/status" },
+        "lease": { "anyOf": [{ "type": "null" }, { "$ref": "#/$defs/lease" }] },
+        "corrections": { "type": "integer", "minimum": 0 },
+        "phases": {
+          "type": "object",
+          "additionalProperties": { "$ref": "#/$defs/phase" }
+        }
+      },
+      "additionalProperties": false
+    },
+    "phase": {
+      "type": "object",
+      "required": ["status", "evidence"],
+      "properties": {
+        "status": { "enum": ["not_started", "running", "review", "verified", "blocked", "failed"] },
+        "evidence": { "type": "array", "items": { "type": "object" } }
+      },
+      "additionalProperties": false
+    },
+    "event": {
+      "type": "object",
+      "required": ["eventId", "sequence", "recordedAt", "type", "roadmapId", "actorId", "fromStatus", "toStatus", "previousEventHash", "previousStateHash", "nextStateHash", "payload", "eventHash"],
+      "properties": {
+        "eventId": { "$ref": "#/$defs/nonEmptyString" },
+        "sequence": { "type": "integer", "minimum": 1 },
+        "recordedAt": { "type": "string", "format": "date-time" },
+        "type": { "$ref": "#/$defs/nonEmptyString" },
+        "roadmapId": { "$ref": "#/$defs/nonEmptyString" },
+        "actorId": { "$ref": "#/$defs/nonEmptyString" },
+        "fromStatus": { "$ref": "#/$defs/status" },
+        "toStatus": { "$ref": "#/$defs/status" },
+        "previousEventHash": { "$ref": "#/$defs/nonEmptyString" },
+        "previousStateHash": { "$ref": "#/$defs/nonEmptyString" },
+        "nextStateHash": { "$ref": "#/$defs/nonEmptyString" },
+        "payload": { "type": "object" },
+        "eventHash": { "$ref": "#/$defs/nonEmptyString" }
+      },
+      "additionalProperties": false
+    }
+  }
+}

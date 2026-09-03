@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "sola.orchestration-campaign.v1",
+  "title": "Sola executable roadmap campaign",
+  "type": "object",
+  "required": ["schemaVersion", "campaignId", "title", "northStar", "sourceRevision", "workspaceRoot", "constraints", "roadmaps"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "campaignId": {"type": "string", "minLength": 1},
+    "title": {"type": "string", "minLength": 1},
+    "northStar": {"type": "string", "minLength": 1},
+    "sourceRevision": {"type": "string", "minLength": 7},
+    "workspaceRoot": {"type": "string", "minLength": 3},
+    "constraints": {
+      "type": "object",
+      "required": ["forkContext", "childWorkersAllowed", "maximumBriefWords", "maximumReturnWords", "correctionBudget"],
+      "properties": {
+        "forkContext": {"const": false},
+        "childWorkersAllowed": {"const": false},
+        "maximumBriefWords": {"type": "integer", "maximum": 1500},
+        "maximumReturnWords": {"type": "integer", "maximum": 300},
+        "correctionBudget": {"type": "integer", "minimum": 0, "maximum": 2}
+      }
+    },
+    "roadmaps": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "outcome", "dependsOn", "executionMode", "taskProfile", "inputs", "ownedOutputs", "prohibitedPaths", "acceptance", "evidencePolicy", "target", "phases"],
+        "properties": {
+          "id": {"type": "string", "pattern": "^[A-Z0-9-]+$"},
+          "title": {"type": "string", "minLength": 1},
+          "outcome": {"type": "string", "minLength": 1},
+          "dependsOn": {"type": "array", "items": {"type": "string"}},
+          "executionMode": {"enum": ["coordinator", "worker", "human"]},
+          "taskProfile": {"$ref": "work-packet.schema.json#/properties/taskProfile"},
+          "inputs": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "ownedOutputs": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "prohibitedPaths": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+          "acceptance": {
+            "type": "object",
+            "required": ["mustFire", "mustStaySilent", "checks"],
+            "properties": {
+              "mustFire": {"type": "string", "minLength": 1},
+              "mustStaySilent": {"type": "string", "minLength": 1},
+              "checks": {"type": "array", "minItems": 2, "items": {"type": "string"}}
+            }
+          },
+          "evidencePolicy": {
+            "type": "object",
+            "required": ["reuse", "rerunWhen"],
+            "properties": {
+              "reuse": {"type": "array", "items": {"type": "string"}},
+              "rerunWhen": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+            }
+          },
+          "target": {
+            "type": "object",
+            "required": ["host", "root", "portabilityRule"],
+            "properties": {
+              "host": {"type": "string"},
+              "root": {"type": "string"},
+              "portabilityRule": {"type": "string"}
+            }
+          },
+          "phases": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 9,
+            "items": {
+              "type": "object",
+              "required": ["id", "title", "type", "mustFire", "mustStaySilent"],
+              "properties": {
+                "id": {"type": "string"},
+                "title": {"type": "string"},
+                "type": {"enum": ["AFK", "HITL"]},
+                "mustFire": {"type": "string"},
+                "mustStaySilent": {"type": "string"}
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
