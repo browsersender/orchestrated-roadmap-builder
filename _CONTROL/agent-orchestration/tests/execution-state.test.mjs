@@ -27,6 +27,35 @@ const T1 = '2026-09-02T00:00:01.000Z';
 const T2 = '2026-09-02T00:00:02.000Z';
 const T3 = '2026-09-02T00:00:03.000Z';
 
+test('intake accepts the packet taskId verbatim and files beneath a directory-owned output', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'sola-intake-dir-'));
+  try {
+    const dirPacket = {
+      ...packet(root),
+      taskId: 'execution-state-test:R00',
+      ownedOutputs: [path.join(root, 'lib', 'cmcb', 'r00'), path.join(root, 'R00.test.mjs')]
+    };
+    let state = createExecutionState(campaign(), T0);
+    state = acquireLease(state, { roadmapId: 'R00', workerId: 'worker-a', leaseId: 'lease-a', ttlMs: 60000, now: T1, expectedRevision: state.revision }).state;
+    state = startRoadmap(state, { roadmapId: 'R00', workerId: 'worker-a', leaseId: 'lease-a', now: T1, expectedRevision: state.revision }).state;
+    const beneath = [
+      path.join(root, 'lib', 'cmcb', 'r00', 'ledger.js'),
+      path.join(root, 'lib', 'cmcb', 'r00', 'nested', 'deep.js'),
+      path.join(root, 'R00.test.mjs')
+    ];
+    const intake = (overrides) => intakeWorkerResult(state, {
+      result: completeResult(root, overrides), packet: dirPacket, leaseId: 'lease-a', now: T3, expectedRevision: state.revision
+    });
+    assert.equal(intake({ taskId: 'execution-state-test:R00', changedPaths: beneath }).state.roadmaps.R00.status, 'review');
+    assert.equal(intake({ taskId: 'R00', changedPaths: beneath }).state.roadmaps.R00.status, 'review');
+    errorCode(() => intake({ taskId: 'R01', changedPaths: beneath }), 'result:task_mismatch');
+    errorCode(() => intake({ taskId: 'R00', changedPaths: [path.join(root, 'lib', 'cmcb', 'r01', 'other.js')] }), 'result:path_mismatch');
+    errorCode(() => intake({ taskId: 'R00', changedPaths: [path.join(root, 'lib', 'cmcb', 'r00-sibling.js')] }), 'result:path_mismatch');
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
 function roadmap(id, dependsOn = []) {
   return {
     id,

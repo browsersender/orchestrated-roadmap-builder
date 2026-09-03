@@ -513,12 +513,18 @@ function assertResultMatchesPacket(state, result, packet) {
   if (!resultValidation.ok) fail('result:invalid', { errors: resultValidation.errors });
   if (!isPlainObject(packet)) fail('packet:invalid');
   if (result.campaignId !== state.campaignId || result.campaignId !== packet.campaignId) fail('result:campaign_mismatch');
-  if (result.taskId !== packet.roadmapId || result.roadmapId !== packet.roadmapId) fail('result:task_mismatch');
+  // The packet's taskId is the identity the worker was told to echo verbatim; the bare roadmapId is
+  // also accepted because earlier workers returned that form.
+  const taskIdentities = new Set([packet.taskId, packet.roadmapId].filter(nonEmptyString));
+  if (!taskIdentities.has(result.taskId) || result.roadmapId !== packet.roadmapId) fail('result:task_mismatch');
   if (result.packetHash !== packet.packetHash) fail('result:packet_mismatch');
   if (result.sourceRevision !== state.sourceRevision || result.sourceRevision !== packet.sourceRevision) fail('result:source_mismatch');
-  const ownedPaths = new Set((packet.ownedOutputs ?? []).map(normalizePath));
+  // Ownership is a path prefix, matching the campaign collision check: a declared directory owns
+  // every file beneath it.
+  const ownedPaths = (packet.ownedOutputs ?? []).map(normalizePath);
   for (const changedPath of result.changedPaths) {
-    if (!ownedPaths.has(normalizePath(changedPath))) fail('result:path_mismatch', { changedPath });
+    const changed = normalizePath(changedPath);
+    if (!ownedPaths.some((owned) => changed === owned || changed.startsWith(`${owned}/`))) fail('result:path_mismatch', { changedPath });
   }
 }
 
