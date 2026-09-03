@@ -10,6 +10,7 @@ This repository contains the orchestration engine, schemas, provider adapters, r
 - [Skill instructions](_CONTROL/agent-orchestration/skills/orchestrated-roadmap-builder/SKILL.md)
 - [VS Code and CLI guide](_CONTROL/agent-orchestration/skills/orchestrated-roadmap-builder/references/vscode-cli.md)
 - [Model routing policy](_CONTROL/agent-orchestration/MODEL-ROUTING-POLICY.md)
+- [Project Observatory build campaign](_CONTROL/agent-orchestration/campaigns/project-observatory-20260902/ROADMAP-SET.md)
 
 ## Install
 

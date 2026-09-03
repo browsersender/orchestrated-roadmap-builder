@@ -1,0 +1,385 @@
+{
+  "schemaVersion": 2,
+  "campaignId": "project-observatory-20260902",
+  "campaignHash": "5fbedd34ef9cb19fe0f634a4e21f86233eedbae98618f57f6039cb2d84168f5f",
+  "sourceRevision": "9e69421531e7d559415b4fa493e39d53eafe7bde",
+  "createdAt": "2026-09-03T03:16:00.536Z",
+  "updatedAt": "2026-09-03T03:16:00.536Z",
+  "revision": 0,
+  "roadmaps": {
+    "OBS-R00": {
+      "status": "ready",
+      "lease": null,
+      "corrections": 0,
+      "phases": {
+        "OBS-R00-P01": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R00-P02": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R00-P03": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R00-P04": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R00-P05": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R00-P06": {
+          "status": "not_started",
+          "evidence": []
+        }
+      }
+    },
+    "OBS-R01": {
+      "status": "not_started",
+      "lease": null,
+      "corrections": 0,
+      "phases": {
+        "OBS-R01-P01": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R01-P02": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R01-P03": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R01-P04": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R01-P05": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R01-P06": {
+          "status": "not_started",
+          "evidence": []
+        }
+      }
+    },
+    "OBS-R02": {
+      "status": "not_started",
+      "lease": null,
+      "corrections": 0,
+      "phases": {
+        "OBS-R02-P01": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R02-P02": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R02-P03": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R02-P04": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R02-P05": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R02-P06": {
+          "status": "not_started",
+          "evidence": []
+        }
+      }
+    },
+    "OBS-R03": {
+      "status": "not_started",
+      "lease": null,
+      "corrections": 0,
+      "phases": {
+        "OBS-R03-P01": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R03-P02": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R03-P03": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R03-P04": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R03-P05": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R03-P06": {
+          "status": "not_started",
+          "evidence": []
+        }
+      }
+    },
+    "OBS-R04": {
+      "status": "not_started",
+      "lease": null,
+      "corrections": 0,
+      "phases": {
+        "OBS-R04-P01": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R04-P02": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R04-P03": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R04-P04": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R04-P05": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R04-P06": {
+          "status": "not_started",
+          "evidence": []
+        }
+      }
+    },
+    "OBS-R05": {
+      "status": "not_started",
+      "lease": null,
+      "corrections": 0,
+      "phases": {
+        "OBS-R05-P01": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R05-P02": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R05-P03": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R05-P04": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R05-P05": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R05-P06": {
+          "status": "not_started",
+          "evidence": []
+        }
+      }
+    },
+    "OBS-R06": {
+      "status": "not_started",
+      "lease": null,
+      "corrections": 0,
+      "phases": {
+        "OBS-R06-P01": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R06-P02": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R06-P03": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R06-P04": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R06-P05": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R06-P06": {
+          "status": "not_started",
+          "evidence": []
+        }
+      }
+    },
+    "OBS-R07": {
+      "status": "not_started",
+      "lease": null,
+      "corrections": 0,
+      "phases": {
+        "OBS-R07-P01": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R07-P02": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R07-P03": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R07-P04": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R07-P05": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R07-P06": {
+          "status": "not_started",
+          "evidence": []
+        }
+      }
+    },
+    "OBS-R08": {
+      "status": "not_started",
+      "lease": null,
+      "corrections": 0,
+      "phases": {
+        "OBS-R08-P01": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R08-P02": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R08-P03": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R08-P04": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R08-P05": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R08-P06": {
+          "status": "not_started",
+          "evidence": []
+        }
+      }
+    },
+    "OBS-R09": {
+      "status": "not_started",
+      "lease": null,
+      "corrections": 0,
+      "phases": {
+        "OBS-R09-P01": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R09-P02": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R09-P03": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R09-P04": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R09-P05": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R09-P06": {
+          "status": "not_started",
+          "evidence": []
+        }
+      }
+    },
+    "OBS-R10": {
+      "status": "not_started",
+      "lease": null,
+      "corrections": 0,
+      "phases": {
+        "OBS-R10-P01": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R10-P02": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R10-P03": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R10-P04": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R10-P05": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R10-P06": {
+          "status": "not_started",
+          "evidence": []
+        }
+      }
+    },
+    "OBS-R11": {
+      "status": "not_started",
+      "lease": null,
+      "corrections": 0,
+      "phases": {
+        "OBS-R11-P01": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R11-P02": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R11-P03": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R11-P04": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R11-P05": {
+          "status": "not_started",
+          "evidence": []
+        },
+        "OBS-R11-P06": {
+          "status": "not_started",
+          "evidence": []
+        }
+      }
+    }
+  },
+  "events": [],
+  "eventHead": "GENESIS"
+}

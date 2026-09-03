@@ -1,0 +1,870 @@
+{
+  "schemaVersion": 1,
+  "campaignId": "project-observatory-20260902",
+  "title": "Sola Project Observatory",
+  "northStar": "Make multi-agent roadmap execution visibly inspectable live and replayable later, in a visible or headless browser, without coupling work to the browser or transferring truth, acceptance, promotion, secret custody, or Repository authority to the view.",
+  "authority": "staged-self-hosting-evidence",
+  "snapshotAt": "2026-09-03T03:16:00.679Z",
+  "gitCommit": "e1140154144ca820fac3c98c5fd77dfe853e0c48",
+  "campaignSource": "D:\\CodexWorktrees\\product-warehouse-agent-orchestration-20260902\\_CONTROL\\agent-orchestration\\campaigns\\project-observatory-20260902\\campaign.json",
+  "executionStateSource": "D:\\CodexWorktrees\\product-warehouse-agent-orchestration-20260902\\_CONTROL\\agent-orchestration\\campaigns\\project-observatory-20260902\\execution-state.json",
+  "manifestIdentity": "project-observatory-20260902@9e69421531e7d559415b4fa493e39d53eafe7bde",
+  "validatorIdentity": "_CONTROL/agent-orchestration/lib/roadmap-graph.mjs",
+  "campaignHash": "5fbedd34ef9cb19fe0f634a4e21f86233eedbae98618f57f6039cb2d84168f5f",
+  "gateCatalogHash": "2883e19f7268b719e5ab229b85f4a582c9102a0630e7cd19c8f536e70d7d461a",
+  "evidenceMaturity": {
+    "verifiedPhases": 0,
+    "totalPhases": 72,
+    "verifiedEvidenceRecords": 0,
+    "boundary": "Committed implementation and focused checks qualify phases; planning files alone never do."
+  },
+  "roadmapCounts": {
+    "ready": 1,
+    "not_started": 11
+  },
+  "phaseCounts": {
+    "not_started": 72
+  },
+  "roadmaps": [
+    {
+      "id": "OBS-R00",
+      "title": "Observatory Constitution and Truth Boundary",
+      "outcome": "Freeze observability ownership, event vocabulary, source precedence, authority limits, and the relationship to the completed ORB campaign and drafted ORX extensions.",
+      "dependsOn": [],
+      "executionMode": "coordinator",
+      "status": "ready",
+      "phaseCounts": {
+        "not_started": 6
+      },
+      "phases": [
+        {
+          "id": "OBS-R00-P01",
+          "title": "Freeze north star and operator questions",
+          "type": "AFK",
+          "mustFire": "An undefined viewer or operator question refuses scope freeze.",
+          "mustStaySilent": "The intended watch, inspect, replay, and handoff workflows are explicit.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R00-P02",
+          "title": "Declare source precedence",
+          "type": "AFK",
+          "mustFire": "A dashboard-only claim refuses truth status.",
+          "mustStaySilent": "Events link to durable state, Git, checks, or receipts.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R00-P03",
+          "title": "Freeze owner and authority treaty",
+          "type": "AFK",
+          "mustFire": "Any observer able to self-accept or self-promote refuses.",
+          "mustStaySilent": "Operator, orchestrator, worker, product, Riff, and Repository roles are bounded.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R00-P04",
+          "title": "Define event vocabulary",
+          "type": "AFK",
+          "mustFire": "Unknown or overloaded event kinds refuse ingestion.",
+          "mustStaySilent": "Lifecycle, message, tool, file, check, commit, block, and completion events are distinct.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R00-P05",
+          "title": "Separate transcript from hidden reasoning",
+          "type": "AFK",
+          "mustFire": "A request to capture private chain-of-thought refuses.",
+          "mustStaySilent": "Only emitted messages, tool metadata, and durable artifacts are represented.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R00-P06",
+          "title": "Freeze campaign provenance",
+          "type": "AFK",
+          "mustFire": "Missing source revision or gate catalog refuses dispatch.",
+          "mustStaySilent": "Twelve roadmaps and seventy-two two-sided phase gates are hashed and readable.",
+          "status": "not_started",
+          "evidenceCount": 0
+        }
+      ]
+    },
+    {
+      "id": "OBS-R01",
+      "title": "Canonical Event and Causal Identity ABI",
+      "outcome": "Create the provider-neutral event envelope, run identity, causal links, artifact references, clocks, sequence rules, and compatibility contract.",
+      "dependsOn": [
+        "OBS-R00"
+      ],
+      "executionMode": "worker",
+      "status": "not_started",
+      "phaseCounts": {
+        "not_started": 6
+      },
+      "phases": [
+        {
+          "id": "OBS-R01-P01",
+          "title": "Define run and worker identity",
+          "type": "AFK",
+          "mustFire": "Missing campaign, roadmap, worker, provider, host, or source identity refuses.",
+          "mustStaySilent": "A complete run identity serializes deterministically.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R01-P02",
+          "title": "Define canonical event envelope",
+          "type": "AFK",
+          "mustFire": "Missing kind, clock, sequence, actor, or payload identity refuses.",
+          "mustStaySilent": "Valid events round-trip without semantic drift.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R01-P03",
+          "title": "Bind causal parentage",
+          "type": "AFK",
+          "mustFire": "Cycles and impossible parent references refuse.",
+          "mustStaySilent": "Message, tool, artifact, check, and lifecycle chains remain traversable.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R01-P04",
+          "title": "Bind artifact and Git pointers",
+          "type": "AFK",
+          "mustFire": "Copied bodies or unverifiable mutable pointers refuse durable status.",
+          "mustStaySilent": "Paths, hashes, commits, and Riff pointers remain references.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R01-P05",
+          "title": "Version compatibility rules",
+          "type": "AFK",
+          "mustFire": "A breaking producer version cannot silently ingest.",
+          "mustStaySilent": "Compatible prior events migrate deterministically.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R01-P06",
+          "title": "Seal event identity fixtures",
+          "type": "AFK",
+          "mustFire": "Fixture mutation without identity change fails.",
+          "mustStaySilent": "Cross-provider equivalent fixtures preserve distinct provenance and stable normalized meaning.",
+          "status": "not_started",
+          "evidenceCount": 0
+        }
+      ]
+    },
+    {
+      "id": "OBS-R02",
+      "title": "Codex JSONL Live Adapter",
+      "outcome": "Translate Codex CLI JSONL into canonical Observatory events with backpressure, interruption recovery, and no dependency on a visible browser.",
+      "dependsOn": [
+        "OBS-R01"
+      ],
+      "executionMode": "worker",
+      "status": "not_started",
+      "phaseCounts": {
+        "not_started": 6
+      },
+      "phases": [
+        {
+          "id": "OBS-R02-P01",
+          "title": "Capture Codex stream contract",
+          "type": "AFK",
+          "mustFire": "Unsupported or ambiguous record kinds refuse mapping.",
+          "mustStaySilent": "Known emitted JSONL records have explicit mappings.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R02-P02",
+          "title": "Normalize lifecycle and messages",
+          "type": "AFK",
+          "mustFire": "Missing run binding refuses emission.",
+          "mustStaySilent": "Started, message, and completed events retain provider provenance.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R02-P03",
+          "title": "Normalize tools and file effects",
+          "type": "AFK",
+          "mustFire": "Unlinked tool results refuse causal completion.",
+          "mustStaySilent": "Tool calls, outputs, and file changes remain causally joined.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R02-P04",
+          "title": "Handle backpressure and partial lines",
+          "type": "AFK",
+          "mustFire": "Truncated records cannot masquerade as complete.",
+          "mustStaySilent": "Chunked streams resume without duplicate events.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R02-P05",
+          "title": "Recover interrupted Codex runs",
+          "type": "AFK",
+          "mustFire": "A restarted observer cannot reuse a stale sequence silently.",
+          "mustStaySilent": "Resume continues from the durable cursor.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R02-P06",
+          "title": "Prove real bounded Codex capture",
+          "type": "AFK",
+          "mustFire": "Fixture-only success cannot qualify the adapter.",
+          "mustStaySilent": "One current run emits source-linked canonical events end to end.",
+          "status": "not_started",
+          "evidenceCount": 0
+        }
+      ]
+    },
+    {
+      "id": "OBS-R03",
+      "title": "Claude Stream JSON Live Adapter",
+      "outcome": "Translate Claude CLI stream-json into the same event ABI while preserving Claude-specific provenance, refusal behavior, and process termination truth.",
+      "dependsOn": [
+        "OBS-R01"
+      ],
+      "executionMode": "worker",
+      "status": "not_started",
+      "phaseCounts": {
+        "not_started": 6
+      },
+      "phases": [
+        {
+          "id": "OBS-R03-P01",
+          "title": "Capture Claude stream contract",
+          "type": "AFK",
+          "mustFire": "Unsupported stream records refuse mapping.",
+          "mustStaySilent": "Known records have explicit normalized meanings.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R03-P02",
+          "title": "Normalize lifecycle and messages",
+          "type": "AFK",
+          "mustFire": "A final message without process truth cannot close a run.",
+          "mustStaySilent": "Message and lifecycle facts remain separate and linked.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R03-P03",
+          "title": "Normalize tools and artifacts",
+          "type": "AFK",
+          "mustFire": "Tool output without call identity refuses.",
+          "mustStaySilent": "Tool and artifact pointers retain causality.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R03-P04",
+          "title": "Handle process exit and timeout",
+          "type": "AFK",
+          "mustFire": "Hung or killed processes cannot report success.",
+          "mustStaySilent": "Exit, timeout, cancel, and completion are typed.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R03-P05",
+          "title": "Recover interrupted Claude runs",
+          "type": "AFK",
+          "mustFire": "Restart cannot duplicate accepted events.",
+          "mustStaySilent": "Durable cursors make resume idempotent.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R03-P06",
+          "title": "Prove real bounded Claude capture",
+          "type": "AFK",
+          "mustFire": "Fixture-only success cannot qualify the adapter.",
+          "mustStaySilent": "One current run emits canonical events end to end.",
+          "status": "not_started",
+          "evidenceCount": 0
+        }
+      ]
+    },
+    {
+      "id": "OBS-R04",
+      "title": "Append-Only Journal, Replay, and Recovery",
+      "outcome": "Persist canonical events in an append-only journal with indexes, cursors, integrity checks, compaction snapshots, and deterministic replay.",
+      "dependsOn": [
+        "OBS-R01"
+      ],
+      "executionMode": "worker",
+      "status": "not_started",
+      "phaseCounts": {
+        "not_started": 6
+      },
+      "phases": [
+        {
+          "id": "OBS-R04-P01",
+          "title": "Build atomic append journal",
+          "type": "AFK",
+          "mustFire": "Torn or concurrent invalid writes refuse.",
+          "mustStaySilent": "Ordered events append durably.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R04-P02",
+          "title": "Build run and artifact indexes",
+          "type": "AFK",
+          "mustFire": "Index divergence is detected.",
+          "mustStaySilent": "Run, roadmap, worker, event-kind, and artifact queries resolve.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R04-P03",
+          "title": "Persist consumer cursors",
+          "type": "AFK",
+          "mustFire": "Cursor regression or foreign journal identity refuses.",
+          "mustStaySilent": "Consumers resume at the next unconsumed event.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R04-P04",
+          "title": "Create immutable snapshots",
+          "type": "AFK",
+          "mustFire": "Snapshot without journal range and hash refuses.",
+          "mustStaySilent": "Snapshot recreates the same derived state.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R04-P05",
+          "title": "Recover crash and partial write",
+          "type": "AFK",
+          "mustFire": "Corrupt tail cannot enter replay.",
+          "mustStaySilent": "Valid prefix recovers with a typed tail refusal.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R04-P06",
+          "title": "Prove deterministic replay",
+          "type": "AFK",
+          "mustFire": "Two replays producing divergent state fail.",
+          "mustStaySilent": "Cold and snapshot-assisted replay match exactly.",
+          "status": "not_started",
+          "evidenceCount": 0
+        }
+      ]
+    },
+    {
+      "id": "OBS-R05",
+      "title": "Orchestrator, Git, and Riff Hooks",
+      "outcome": "Emit Observatory events from orchestration transitions, Git milestones, and Riff artifact publication without allowing any hook to mutate acceptance truth.",
+      "dependsOn": [
+        "OBS-R01",
+        "OBS-R04"
+      ],
+      "executionMode": "worker",
+      "status": "not_started",
+      "phaseCounts": {
+        "not_started": 6
+      },
+      "phases": [
+        {
+          "id": "OBS-R05-P01",
+          "title": "Instrument orchestration transitions",
+          "type": "AFK",
+          "mustFire": "An event preceding its durable state transition refuses.",
+          "mustStaySilent": "Committed transitions emit linked events.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R05-P02",
+          "title": "Instrument work packet and lease events",
+          "type": "AFK",
+          "mustFire": "Unleased ownership cannot report running.",
+          "mustStaySilent": "Packet, lease, renewal, and expiry appear.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R05-P03",
+          "title": "Instrument Git milestones",
+          "type": "AFK",
+          "mustFire": "Dirty state cannot masquerade as a commit.",
+          "mustStaySilent": "Branch, commit, and changed-path metadata are source-linked.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R05-P04",
+          "title": "Instrument checks and evidence intake",
+          "type": "AFK",
+          "mustFire": "A check result cannot grant acceptance by itself.",
+          "mustStaySilent": "Check and evidence events cite their governing gate.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R05-P05",
+          "title": "Instrument Riff publication",
+          "type": "AFK",
+          "mustFire": "Copied artifact bodies or duplicate roots refuse.",
+          "mustStaySilent": "One compact pointer event links the Riff thread.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R05-P06",
+          "title": "Prove hook failure isolation",
+          "type": "AFK",
+          "mustFire": "Observability failure that corrupts worker execution fails qualification.",
+          "mustStaySilent": "Work continues with an explicit observability-degraded receipt.",
+          "status": "not_started",
+          "evidenceCount": 0
+        }
+      ]
+    },
+    {
+      "id": "OBS-R06",
+      "title": "Live Query API and Event Stream",
+      "outcome": "Serve replayable state and live events through a local API and SSE stream with bounded clients, cursor resume, health, and graceful shutdown.",
+      "dependsOn": [
+        "OBS-R02",
+        "OBS-R03",
+        "OBS-R04",
+        "OBS-R05"
+      ],
+      "executionMode": "worker",
+      "status": "not_started",
+      "phaseCounts": {
+        "not_started": 6
+      },
+      "phases": [
+        {
+          "id": "OBS-R06-P01",
+          "title": "Build health and run query API",
+          "type": "AFK",
+          "mustFire": "Health cannot report ready over an unreadable journal.",
+          "mustStaySilent": "Runs and service dependencies are queryable.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R06-P02",
+          "title": "Build replay endpoints",
+          "type": "AFK",
+          "mustFire": "Invalid ranges and foreign cursors refuse.",
+          "mustStaySilent": "Bounded history pages preserve event order.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R06-P03",
+          "title": "Build SSE live stream",
+          "type": "AFK",
+          "mustFire": "Slow clients cannot exhaust the service.",
+          "mustStaySilent": "Clients receive ordered live events with keepalive.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R06-P04",
+          "title": "Support cursor resume",
+          "type": "AFK",
+          "mustFire": "Expired or incompatible cursors refuse explicitly.",
+          "mustStaySilent": "Reconnect resumes without gaps or duplicates.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R06-P05",
+          "title": "Add lifecycle and graceful shutdown",
+          "type": "AFK",
+          "mustFire": "Unflushed shutdown cannot claim clean exit.",
+          "mustStaySilent": "Start, stop, and restart preserve visible state.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R06-P06",
+          "title": "Prove browser-independent collection",
+          "type": "AFK",
+          "mustFire": "Closing all browsers cannot stop collectors.",
+          "mustStaySilent": "Events accumulate and replay after a browser-free interval.",
+          "status": "not_started",
+          "evidenceCount": 0
+        }
+      ]
+    },
+    {
+      "id": "OBS-R07",
+      "title": "Visible Project Observatory Dashboard",
+      "outcome": "Build the operator-facing browser application for campaign lanes, workers, transcripts, tools, artifacts, checks, Git, dependencies, and exact next actions.",
+      "dependsOn": [
+        "OBS-R06"
+      ],
+      "executionMode": "worker",
+      "status": "not_started",
+      "phaseCounts": {
+        "not_started": 6
+      },
+      "phases": [
+        {
+          "id": "OBS-R07-P01",
+          "title": "Build campaign and worker board",
+          "type": "AFK",
+          "mustFire": "Counts diverging from API state are visible as an error.",
+          "mustStaySilent": "Lane and worker states update without layout shift.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R07-P02",
+          "title": "Build transcript and tool timeline",
+          "type": "AFK",
+          "mustFire": "Hidden reasoning or secret payloads cannot render.",
+          "mustStaySilent": "Emitted messages and tool metadata remain source-linked.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R07-P03",
+          "title": "Build dependency and ownership view",
+          "type": "AFK",
+          "mustFire": "Unowned or colliding work is highlighted.",
+          "mustStaySilent": "Dependencies, leases, and owners are scan-friendly.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R07-P04",
+          "title": "Build artifact, check, and Git view",
+          "type": "AFK",
+          "mustFire": "Uncommitted evidence cannot look canonical.",
+          "mustStaySilent": "Artifacts, checks, commits, and maturity are distinct.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R07-P05",
+          "title": "Build operator actions",
+          "type": "AFK",
+          "mustFire": "UI controls cannot bypass orchestrator validation.",
+          "mustStaySilent": "Pause, cancel, retry, and open-artifact actions issue typed requests.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R07-P06",
+          "title": "Prove responsive live operation",
+          "type": "AFK",
+          "mustFire": "Blank, overlapping, stale, or disconnected views fail.",
+          "mustStaySilent": "Desktop and mobile screenshots plus interaction checks pass.",
+          "status": "not_started",
+          "evidenceCount": 0
+        }
+      ]
+    },
+    {
+      "id": "OBS-R08",
+      "title": "Headless Monitoring and Visual Receipts",
+      "outcome": "Run browser checks headlessly for availability, rendering, stale-state detection, screenshots, and regressions while keeping collection independent of Playwright.",
+      "dependsOn": [
+        "OBS-R06",
+        "OBS-R07"
+      ],
+      "executionMode": "worker",
+      "status": "not_started",
+      "phaseCounts": {
+        "not_started": 6
+      },
+      "phases": [
+        {
+          "id": "OBS-R08-P01",
+          "title": "Create headless launch profile",
+          "type": "AFK",
+          "mustFire": "A profile without explicit URL, timeout, and output root refuses.",
+          "mustStaySilent": "Headless browser starts reproducibly.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R08-P02",
+          "title": "Check service and freshness",
+          "type": "AFK",
+          "mustFire": "Stale timestamps or disconnected SSE fail.",
+          "mustStaySilent": "Live health and recent events are visible.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R08-P03",
+          "title": "Check desktop rendering",
+          "type": "AFK",
+          "mustFire": "Blank canvas, overlap, or clipped controls fail.",
+          "mustStaySilent": "Desktop viewport remains readable.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R08-P04",
+          "title": "Check narrow rendering",
+          "type": "AFK",
+          "mustFire": "Overflow or unusable controls fail.",
+          "mustStaySilent": "Narrow viewport remains usable.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R08-P05",
+          "title": "Capture visual receipts",
+          "type": "AFK",
+          "mustFire": "Screenshot without lineage refuses proof status.",
+          "mustStaySilent": "Image receipt binds URL, commit, viewport, and time.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R08-P06",
+          "title": "Prove browser shutdown isolation",
+          "type": "AFK",
+          "mustFire": "Stopping Playwright cannot stop event intake.",
+          "mustStaySilent": "Collectors and workers continue after headless exit.",
+          "status": "not_started",
+          "evidenceCount": 0
+        }
+      ]
+    },
+    {
+      "id": "OBS-R09",
+      "title": "Multi-Machine Observatory Federation",
+      "outcome": "Aggregate Lab, Warehouse, Browser Sender, VPS, and future-node events under one campaign identity through authenticated transport and offline capsules.",
+      "dependsOn": [
+        "OBS-R04",
+        "OBS-R06"
+      ],
+      "executionMode": "worker",
+      "status": "not_started",
+      "phaseCounts": {
+        "not_started": 6
+      },
+      "phases": [
+        {
+          "id": "OBS-R09-P01",
+          "title": "Define node identity and capability",
+          "type": "AFK",
+          "mustFire": "Unknown host or mismatched key identity refuses.",
+          "mustStaySilent": "Declared nodes advertise bounded capabilities.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R09-P02",
+          "title": "Build authenticated event transport",
+          "type": "AFK",
+          "mustFire": "Plain unauthenticated remote ingestion refuses.",
+          "mustStaySilent": "Approved SSH tunnel or authenticated channel transports events.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R09-P03",
+          "title": "Build offline event capsules",
+          "type": "AFK",
+          "mustFire": "Mutable or unsigned capsule lineage refuses.",
+          "mustStaySilent": "Disconnected nodes can ship content-addressed batches.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R09-P04",
+          "title": "Reconcile clocks and duplicates",
+          "type": "AFK",
+          "mustFire": "Conflicting sequence ownership refuses merge.",
+          "mustStaySilent": "Duplicate delivery is idempotent and wall-clock skew is explicit.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R09-P05",
+          "title": "Recover peer loss",
+          "type": "AFK",
+          "mustFire": "Missing intervals cannot appear continuous.",
+          "mustStaySilent": "Loss and recovery are visible with exact gaps.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R09-P06",
+          "title": "Prove three-node campaign view",
+          "type": "AFK",
+          "mustFire": "Machine-local absence is not reported as global absence.",
+          "mustStaySilent": "Warehouse view joins Lab and Browser Sender evidence under one campaign.",
+          "status": "not_started",
+          "evidenceCount": 0
+        }
+      ]
+    },
+    {
+      "id": "OBS-R10",
+      "title": "Privacy, Redaction, and Operator Security",
+      "outcome": "Prevent credentials, private keys, cookies, hidden reasoning, unsafe command bodies, and sensitive live-account data from entering journals, APIs, screenshots, or Riff pointers.",
+      "dependsOn": [
+        "OBS-R01",
+        "OBS-R06",
+        "OBS-R09"
+      ],
+      "executionMode": "worker",
+      "status": "not_started",
+      "phaseCounts": {
+        "not_started": 6
+      },
+      "phases": [
+        {
+          "id": "OBS-R10-P01",
+          "title": "Define sensitive-data taxonomy",
+          "type": "AFK",
+          "mustFire": "Unknown high-risk fields cannot default to public.",
+          "mustStaySilent": "Secrets, accounts, personal data, commands, and artifacts have policies.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R10-P02",
+          "title": "Redact before persistence",
+          "type": "AFK",
+          "mustFire": "A seeded secret reaching disk fails.",
+          "mustStaySilent": "Canonical redaction happens ahead of hashing and append.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R10-P03",
+          "title": "Harden local API and binding",
+          "type": "AFK",
+          "mustFire": "Non-local bind without explicit authenticated configuration refuses.",
+          "mustStaySilent": "Default service is loopback-only.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R10-P04",
+          "title": "Harden artifact and path access",
+          "type": "AFK",
+          "mustFire": "Traversal or undeclared file access refuses.",
+          "mustStaySilent": "Only declared artifact roots are readable.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R10-P05",
+          "title": "Harden screenshots and exports",
+          "type": "AFK",
+          "mustFire": "Sensitive seeded content in export fails.",
+          "mustStaySilent": "Exports preserve meaning without secret bodies.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R10-P06",
+          "title": "Run hostile security fixtures",
+          "type": "AFK",
+          "mustFire": "Any seeded credential survives a surface scan fails.",
+          "mustStaySilent": "Journal, API, HTML, screenshots, and Riff payloads remain clean.",
+          "status": "not_started",
+          "evidenceCount": 0
+        }
+      ]
+    },
+    {
+      "id": "OBS-R11",
+      "title": "Whole-System Qualification and Protected Intake",
+      "outcome": "Prove live Codex and Claude observation, browser-independent collection, crash replay, operator comprehension, multi-machine continuity, security, and portable installation; then prepare protected Repository intake.",
+      "dependsOn": [
+        "OBS-R02",
+        "OBS-R03",
+        "OBS-R05",
+        "OBS-R07",
+        "OBS-R08",
+        "OBS-R09",
+        "OBS-R10"
+      ],
+      "executionMode": "coordinator",
+      "status": "not_started",
+      "phaseCounts": {
+        "not_started": 6
+      },
+      "phases": [
+        {
+          "id": "OBS-R11-P01",
+          "title": "Run mixed-provider keystone",
+          "type": "AFK",
+          "mustFire": "A single-provider or fixture-only run cannot qualify.",
+          "mustStaySilent": "Codex and Claude events compose in one live campaign.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R11-P02",
+          "title": "Prove crash, replay, and browser independence",
+          "type": "AFK",
+          "mustFire": "State loss or browser-coupled collection fails.",
+          "mustStaySilent": "Restart reproduces state and catches up.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R11-P03",
+          "title": "Prove multi-machine continuity",
+          "type": "AFK",
+          "mustFire": "Hidden gaps or identity substitution fail.",
+          "mustStaySilent": "At least three declared nodes preserve provenance.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R11-P04",
+          "title": "Prove security and operator comprehension",
+          "type": "AFK",
+          "mustFire": "Secret leakage or authority confusion fails.",
+          "mustStaySilent": "Hostile fixtures pass and an operator can locate run, blocker, commit, and artifact.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R11-P05",
+          "title": "Package portable install and closeout",
+          "type": "AFK",
+          "mustFire": "Machine-specific undocumented assumptions refuse release.",
+          "mustStaySilent": "Installer, runbook, evidence ledger, and dashboard agree.",
+          "status": "not_started",
+          "evidenceCount": 0
+        },
+        {
+          "id": "OBS-R11-P06",
+          "title": "Submit protected Repository intake",
+          "type": "HITL",
+          "mustFire": "Automatic or worker-declared canonization refuses.",
+          "mustStaySilent": "A reviewed intake packet targets R:\\Repository-v3 without claiming acceptance.",
+          "status": "not_started",
+          "evidenceCount": 0
+        }
+      ]
+    }
+  ]
+}
