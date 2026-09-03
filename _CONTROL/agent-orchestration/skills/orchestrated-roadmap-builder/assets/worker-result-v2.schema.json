@@ -22,7 +22,7 @@
     "commit"
   ],
   "properties": {
-    "schemaVersion": { "const": 2 },
+    "schemaVersion": { "type": "integer", "const": 2 },
     "campaignId": { "type": "string", "minLength": 1 },
     "taskId": { "type": "string", "minLength": 1 },
     "roadmapId": { "type": "string", "minLength": 1 },
